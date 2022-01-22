@@ -9,4 +9,9 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    = yield
+    header.navbar.is-light
+      .container.navbar-brand
+        = link_to 'reRead', root_path, class: 'navbar-item'
+    .container
+      = yield
+
