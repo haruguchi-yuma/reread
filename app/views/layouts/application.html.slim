@@ -9,8 +9,16 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header.navbar.is-light
+    nav.navbar.is-light
       .container.navbar-brand
-        = link_to 'reRead', root_path, class: 'navbar-item'
+          = link_to 'reRead', root_path, class: 'navbar-item'
+      .navbar-end
+        - if logged_in?
+          = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
+        - else
+          = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
     .container
+      - if flash.notice
+        .notification.is-success.is-light
+          = flash.notice
       = yield
