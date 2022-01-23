@@ -9,8 +9,10 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    header.navbar.is-light
+    nav.navbar.is-light
       .container.navbar-brand
-        = link_to 'reRead', root_path, class: 'navbar-item'
+          = link_to 'reRead', root_path, class: 'navbar-item'
+      .navbar-end
+        = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
     .container
       = yield
