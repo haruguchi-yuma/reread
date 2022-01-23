@@ -15,4 +15,7 @@ html
       .navbar-end
         = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
     .container
+      - if flash.notice
+        .notification.is-success.is-light
+          = flash.notice
       = yield
