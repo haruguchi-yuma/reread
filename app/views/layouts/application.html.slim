@@ -13,7 +13,10 @@ html
       .container.navbar-brand
           = link_to 'reRead', root_path, class: 'navbar-item'
       .navbar-end
-        = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
+        - if logged_in?
+          = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
+        - else
+          = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
     .container
       - if flash.notice
         .notification.is-success.is-light
