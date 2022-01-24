@@ -21,4 +21,7 @@ html
       - if flash.notice
         .notification.is-success.is-light
           = flash.notice
+      - if flash.alert
+        .notification.is-danger.is-light
+          = flash.alert
       = yield
