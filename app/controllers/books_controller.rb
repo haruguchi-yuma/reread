@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   def index
     @book = current_user.books.new
+    @books = current_user.books.order(created_at: :desc)
   end
 
   def create
