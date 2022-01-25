@@ -1,0 +1,13 @@
+= form_with model: book do |f|
+  - if book.errors.any?
+    #error_explanation.message.is-light
+      ul
+        - book.errors.full_messages.each do |message|
+          li.message-body = message
+  .field
+    .control
+      = f.label :title, class: 'label'
+      = f.text_field :title, class: 'input'
+  .field
+    .control
+      = f.submit class: 'button'

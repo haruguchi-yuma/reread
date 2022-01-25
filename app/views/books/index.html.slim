@@ -1,0 +1,11 @@
+h2.title.is-2 書籍の一覧
+
+= render 'form', book: @book
+
+hr
+
+ul
+  - @books.each do |book|
+    .columns
+      li.column = book.title
+      li.column = book.created_at
