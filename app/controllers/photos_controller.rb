@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PhotosController < ApplicationController
   def index
     @photo = Book.find(params[:book_id]).photos.new
