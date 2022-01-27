@@ -1,2 +1,10 @@
-h1 Photos#index
-p Find me in app/views/photos/index.html.slim
+h2.title.is-2 写真一覧
+
+ul.columns
+  - @photos.each do |photo|
+    li.column
+      = image_tag photo.image_url if photo.image
+
+
+hr
+= render 'form', photo: @photo
