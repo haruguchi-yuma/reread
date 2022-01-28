@@ -1,7 +1,7 @@
 h2.title.is-2 = @book.title
 p = "投稿日: #{l(@photos.first.created_at)}"
 = render 'form', photo: @photo
-p= "写真の枚数: #{@photos.count}枚"
+p = "写真の枚数: #{@photos.count}枚"
 hr
 ul.columns
   - @photos.each do |photo|
