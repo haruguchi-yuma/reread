@@ -2,8 +2,9 @@
 
 class PhotosController < ApplicationController
   def index
-    @photo = Book.find(params[:book_id]).photos.new
-    @photos = Book.find(params[:book_id]).photos
+    @book = Book.find(params[:book_id])
+    @photos = @book.photos.order(created_at: :desc)
+    @photo = @book.photos.new
   end
 
   def create
