@@ -7,5 +7,5 @@ hr
 ul
   - @books.each do |book|
     .columns
-      li.column = book.title
+      li.column = link_to book.title, book_photos_path(book)
       li.column = book.created_at

@@ -1,0 +1,13 @@
+= form_with(model: [:book, @photo]) do |f|
+  .field
+    .control.file.is-boxed
+      = f.label :image, class: 'file-label'
+        = f.file_field :image, class: 'file-input'
+        span.file-cta
+          span.file-icon
+            i.fas.fa-upload
+          span.file-label
+            | Chose a file
+  .field
+    .control
+    = f.submit class: 'button'
