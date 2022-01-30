@@ -1,9 +1,10 @@
 h2.title.is-2 = @book.title
-p = "投稿日: #{l(@photos.first.created_at)}"
+p = "投稿日: #{l(@photos.first.created_at)}" if @phots.present?
 = render 'form', photo: @photo
 p = "写真の枚数: #{@photos.count}枚"
 hr
-ul.columns
-  - @photos.each do |photo|
-    li.column = image_tag photo.image_url if photo.image
-      = photo.created_at
+
+= if @photos.present?
+  ul.columns
+    - @photos.each do |photo|
+      li.column = image_tag photo.image_url if photo.image
