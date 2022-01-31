@@ -4,7 +4,7 @@ p = "投稿日: #{l(@photos.first.created_at)}" if @phots.present?
 p = "写真の枚数: #{@photos.count}枚"
 hr
 
-= if @photos.present?
+- if @photos.present?
   ul.columns
     - @photos.each do |photo|
       li.column = image_tag photo.image_url if photo.image
