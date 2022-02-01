@@ -8,4 +8,4 @@ ul
   - @books.each do |book|
     .columns
       li.column = link_to book.title, book_path(book)
-      li.column = book.created_at
+      li.column = "#{l(book.created_at, format: :date)}" + "(#{time_ago_in_words(book.created_at)}前)"
