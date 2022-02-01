@@ -18,8 +18,21 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = current_user.books.find(params[:id])
     @photos = @book.photos.order(created_at: :desc)
+  end
+
+  def edit
+    @book = current_user.books.find(params[:id])
+  end
+
+  def update
+    @book = current_user.books.find(params[:id])
+    if @book.update(book_params)
+      redirect_to @book
+    else
+      render :edit
+    end
   end
 
   private
