@@ -15,6 +15,7 @@ html
           = link_to 'reRead', root_path, class: 'navbar-item'
       .navbar-end
         - if logged_in?
+          = image_tag @current_user.image_url, width: 50, height: 30
           = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
         - else
           = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
