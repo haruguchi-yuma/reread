@@ -1,0 +1,14 @@
+h2.title.is-2 = @book.title
+p = "投稿日: #{l(@photos.first.created_at, format: :long)}" if @photos.present?
+
+p = "写真の枚数: #{@photos.count}枚"
+
+hr
+
+- if @photos.present?
+  ul.columns
+    - @photos.each do |photo|
+      li.column
+        = image_tag photo.image_url if photo.image
+
+
