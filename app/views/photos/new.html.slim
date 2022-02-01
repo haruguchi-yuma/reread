@@ -3,3 +3,4 @@ hr
 h3.subtitle.is-4 写真の投稿
 
 = render 'form', photo: @photo
+= link_to '戻る', book_path(@photo.book)
