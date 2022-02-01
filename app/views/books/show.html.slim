@@ -3,7 +3,7 @@ h2.title.is-2 = @book.title
 hr
 p = "投稿日: #{l(@photos.first.created_at, format: :long)}" if @photos.present?
 p = "写真の枚数: #{@photos.count}枚"
-
+= link_to '写真投稿', new_book_photos_path(@book), class: 'button'
 hr
 
 - if @photos.present?
@@ -11,5 +11,4 @@ hr
     - @photos.each do |photo|
       li.column
         = image_tag photo.image_url if photo.image
-
-
+= link_to '戻る', books_path

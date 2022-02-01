@@ -3,5 +3,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
 
-  resources :books
+  resources :books, except: %i(new destroy) do
+    resource :photos, only: %i(new create)
+  end
 end
