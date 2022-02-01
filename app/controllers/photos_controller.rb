@@ -1,20 +1,17 @@
 # frozen_string_literal: true
 
 class PhotosController < ApplicationController
-  def index
-    @book = Book.find(params[:book_id])
-    @photos = @book.photos.order(created_at: :desc)
-    @photo = @book.photos.new
+  def new
+    @photo = Book.find(params[:book_id]).photos.new
   end
 
   def create
-    @photo = Book.find(params[:book_id]).photos.new(photo_params)
-    @photos = Book.find(params[:book_id]).photos.order(created_at: :desc)
+    photo = Book.find(params[:book_id]).photos.new(photo_params)
 
-    if @photo.save
-      redirect_to book_photos_path, notice: '写真を投稿しました'
+    if photo.save
+      redirect_to book_url(photo.book), notice: '写真を投稿しました'
     else
-      render :index
+      render :new
     end
   end
 
