@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class BooksController < ApplicationController
+  before_action :set_book, only: %i[show edit update destroy]
+
   def index
     @book = current_user.books.new
     @books = current_user.books.order(created_at: :desc)
@@ -18,16 +20,12 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = current_user.books.find(params[:id])
     @photos = @book.photos.order(created_at: :desc)
   end
 
-  def edit
-    @book = current_user.books.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @book = current_user.books.find(params[:id])
     if @book.update(book_params)
       redirect_to @book
     else
@@ -36,7 +34,6 @@ class BooksController < ApplicationController
   end
 
   def destroy
-    @book = current_user.books.find(params[:id])
     @book.destroy!
     redirect_to books_url, notice: "「#{@book.title}」を削除しました"
   end
@@ -45,5 +42,9 @@ class BooksController < ApplicationController
 
   def book_params
     params.require(:book).permit(:title)
+  end
+
+  def set_book
+    @book = current_user.books.find(params[:id])
   end
 end
