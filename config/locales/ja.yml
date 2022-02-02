@@ -5,3 +5,7 @@ ja:
     attributes:
       book:
         title: 書籍名
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      date: "%Y年%m月%d日"

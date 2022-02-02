@@ -1,7 +1,8 @@
 h2.title.is-2 = @book.title
 = link_to '書籍の編集', edit_book_path(@book), class: 'button'
 hr
-p = "投稿日: #{l(@photos.first.created_at, format: :long)}" if @photos.present?
+-  if @photos.present?
+  p = "投稿日: #{last_update_of_photo(@book)}"
 p = "写真の枚数: #{@photos.count}枚"
 = link_to '写真投稿', new_book_photos_path(@book), class: 'button'
 hr

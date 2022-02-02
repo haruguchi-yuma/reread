@@ -8,4 +8,5 @@ ul
   - @books.each do |book|
     .columns
       li.column = link_to book.title, book_path(book)
-      li.column = book.created_at
+      li.column
+        = last_update_of_photo(book)
