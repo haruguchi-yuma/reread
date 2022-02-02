@@ -13,3 +13,5 @@ hr
       li.column
         = image_tag photo.image_url if photo.image
 = link_to '戻る', books_path
+= link_to 'この書籍を削除する', book_path(@book), method: :delete,
+  data: { confirm: '投稿した写真も削除されます。よろしいですか？' }, class: 'button'
