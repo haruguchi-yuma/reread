@@ -35,6 +35,12 @@ class BooksController < ApplicationController
     end
   end
 
+  def destroy
+    @book = current_user.books.find(params[:id])
+    @book.destroy!
+    redirect_to books_url, notice: "「#{@book.title}」を削除しました"
+  end
+
   private
 
   def book_params
