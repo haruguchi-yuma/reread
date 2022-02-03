@@ -3,5 +3,7 @@
 class WelcomeController < ApplicationController
   skip_before_action :authenticate
 
-  def index; end
+  def index
+    redirect_to books_path if logged_in?
+  end
 end
