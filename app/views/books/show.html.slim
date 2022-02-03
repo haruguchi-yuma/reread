@@ -1,3 +1,4 @@
+- content_for(:html_title) { "投稿した写真(#{@book.title})" }
 h2.title.is-2 = @book.title
 = link_to '書籍の編集', edit_book_path(@book), class: 'button'
 hr
