@@ -1,13 +1,13 @@
-= form_with(model: [:book, photo]) do |f|
-  .field
-    .control.file.is-boxed
-      = f.label :image, class: 'file-label'
-        = f.file_field :image, class: 'file-input'
-        span.file-cta
-          span.file-icon
-            i.fas.fa-upload
-          span.file-label
-            | Chose a file
+= form_with(model: [photo.book, photo]) do |f|
+  - if photo.errors.any?
+    #error_explanation.message.is-light
+      ul
+        - photo.errors.full_messages.each do |message|
+          li.message-body = message
   .field
     .control
-    = f.submit class: 'button'
+      = f.label :image, class: 'file-label'
+      = image_tag f.object.image_url if f.object.cached_image_data
+      = f.hidden_field :image, value: f.object.cached_image_data
+      = f.file_field :image, class: 'file'
+  = f.submit '投稿する', class: 'button'

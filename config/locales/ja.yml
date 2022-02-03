@@ -2,9 +2,12 @@ ja:
   activerecord:
     models:
       book: 書籍
+      photo: 写真
     attributes:
       book:
         title: 書籍名
+      photo:
+        image: 写真
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
