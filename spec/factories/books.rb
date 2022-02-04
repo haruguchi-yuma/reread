@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :book do
-    sequence(:title) { |i| "Book#{i}"}
+    sequence(:title) { |i| "Book#{i}" }
     association :user
   end
 end
