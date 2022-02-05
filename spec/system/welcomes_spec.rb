@@ -5,5 +5,9 @@ RSpec.describe "Welcomes", type: :system do
     driven_by(:rack_test)
   end
 
-  pending "add some scenarios (or delete) #{__FILE__}"
+  scenario "ログインしていないユーザがwelcomeページを訪れること" do
+    visit root_path
+
+    expect(page).to have_content "Welcome#index"
+  end
 end
