@@ -13,6 +13,12 @@ RSpec.describe Book, type: :model do
     expect(book.errors[:title]).to include('を入力してください')
   end
 
+  it 'ユーザーがいなければ無効な状態であること' do
+    book = FactoryBot.build(:book, user: nil)
+    book.valid?
+    expect(book.errors[:user]).to include('を入力してください')
+  end
+
   it 'タイトルが50文字より長ければ無効な状態であること' do
     book = FactoryBot.build(:book, title: 'a' * 50)
     book.valid?
