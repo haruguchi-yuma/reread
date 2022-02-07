@@ -6,8 +6,7 @@ module SignInHelper
       uid: user.uid,
       info: { image: user.image_url }
     )
-
-    visit root_url
+    visit root_path
     click_on "GitHubでログイン"
     @current_user = user
   end
