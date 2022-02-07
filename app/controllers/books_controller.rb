@@ -2,7 +2,7 @@
 
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
-
+  before_action :allow_only_book_pages_from_your_own_book, only: %i[show edit update destroy]
   def index
     @book = current_user.books.new
     @books = current_user.books.order(created_at: :desc)
@@ -27,7 +27,7 @@ class BooksController < ApplicationController
 
   def update
     if @book.update(book_params)
-      redirect_to @book
+      redirect_to @book, notice: "「#{@book.title}」に変更しました "
     else
       render :edit
     end
@@ -45,6 +45,12 @@ class BooksController < ApplicationController
   end
 
   def set_book
-    @book = current_user.books.find(params[:id])
+    @book = Book.find(params[:id])
+  end
+
+  def allow_only_book_pages_from_your_own_book
+    return if current_user == @book.user
+
+    redirect_to books_url
   end
 end
