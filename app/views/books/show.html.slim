@@ -11,7 +11,7 @@ hr
 - if @photos.present?
   ul.columns
     - @photos.each do |photo|
-      li.column
+      li class="column image-#{photo.id}"
         = image_tag photo.image_url if photo.image
 = link_to '戻る', books_path
 = link_to 'この書籍を削除する', book_path(@book), method: :delete,
