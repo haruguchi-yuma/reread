@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module SignInHelper
   def sign_in_as(user)
     OmniAuth.config.test_mode = true
@@ -7,7 +9,7 @@ module SignInHelper
       info: { image: user.image_url }
     )
     visit root_path
-    click_on "GitHubでログイン"
+    click_on 'GitHubでログイン'
     @current_user = user
   end
 

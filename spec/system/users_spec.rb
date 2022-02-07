@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Users", type: :system do
+RSpec.describe 'Users', type: :system do
   let(:user) { FactoryBot.create(:user) }
 
   describe 'ログイン・ログアウト処理' do

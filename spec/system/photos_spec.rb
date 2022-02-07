@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Photos", type: :system do
+RSpec.describe 'Photos', type: :system do
   let(:user_a) { FactoryBot.create(:user) }
   let(:user_b) { FactoryBot.create(:user) }
   let(:book) { FactoryBot.create(:book, user: user_a) }
@@ -38,10 +40,10 @@ RSpec.describe "Photos", type: :system do
 
     context 'ファイルを選択したとき' do
       it '投稿できる' do
-        expect {
+        expect do
           attach_file '写真', "#{Rails.root}/spec/factories/test_640x320.png"
           click_on '投稿する'
-        }.to change(book.photos, :count).by(1)
+        end.to change(book.photos, :count).by(1)
 
         expect(page).to have_selector '.notification', text: '写真を投稿しました'
       end
@@ -49,9 +51,9 @@ RSpec.describe "Photos", type: :system do
 
     context 'ファイルを選択しなかったとき' do
       it 'エラーになる' do
-        expect {
+        expect do
           click_on '投稿する'
-        }.to change(book.photos, :count).by(0)
+        end.to change(book.photos, :count).by(0)
         within '#error_explanation' do
           expect(page).to have_content '写真が選択されていません'
         end
