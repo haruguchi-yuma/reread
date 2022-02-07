@@ -11,6 +11,10 @@ Metrics/ClassLength:
   Exclude:
     - spec/**/*
 
+Rails/FilePath:
+  Exclude:
+    - spec/**/*
+
 AllCops:
   Exclude:
     - '**/templates/**/*'
