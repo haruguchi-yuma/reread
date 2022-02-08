@@ -10,16 +10,17 @@ html
     = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   body
-    nav.navbar.is-light
-      .container.navbar-brand
-          = link_to 'reRead', root_path, class: 'navbar-item'
-      .navbar-end
-        - if logged_in?
-          = image_tag @current_user.image_url, width: 50, height: 30
-          = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
-        - else
-          = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
-    .container
+    header
+      nav.navbar.is-light
+        .container.navbar-brand
+            = link_to 'reRead', root_path, class: 'navbar-item'
+        .navbar-end
+          - if logged_in?
+            = image_tag @current_user.image_url, width: 50, height: 30
+            = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
+          - else
+            = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
+    main.container
       - if flash.notice
         .notification.is-success.is-light
           = flash.notice
@@ -27,3 +28,14 @@ html
         .notification.is-danger.is-light
           = flash.alert
       = yield
+    footer.footer.is-size-7-mobile.py-4
+      .has-text-centered
+        = link_to 'https://github.com/haruguchi-yuma/reread', class: 'mx-3' do
+          i.fab.fa-github
+        = link_to 'https://twitter.com/haruguchiyuma', class: 'mx-3' do
+          i.fab.fa-twitter
+        = link_to '利用規約', '#', class: 'mx-3'
+        = link_to 'プライバシーポリシー', '#', class: 'mx-3'
+        div
+          = Time.current.year
+          |  ©haruguchi
