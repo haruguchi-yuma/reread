@@ -29,13 +29,4 @@ html
           = flash.alert
       = yield
     footer.footer.is-size-7-mobile.py-4
-      .has-text-centered
-        = link_to 'https://github.com/haruguchi-yuma/reread', class: 'mx-3' do
-          i.fab.fa-github
-        = link_to 'https://twitter.com/haruguchiyuma', class: 'mx-3' do
-          i.fab.fa-twitter
-        = link_to '利用規約', '#', class: 'mx-3'
-        = link_to 'プライバシーポリシー', '#', class: 'mx-3'
-        div
-          = Time.current.year
-          |  ©haruguchi
+      = render 'shared/footer'
