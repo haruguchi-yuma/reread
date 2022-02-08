@@ -1,0 +1,7 @@
+h2.title.is-2.my-6 アカウント削除確認画面
+
+p.my-4 アカウントを削除した場合、登録した書籍や写真が全て削除されます。
+
+= link_to 'アカウントを削除する', retirement_path, method: :post,
+  class: 'button is-danger is-light', data: { confirm: '本当に削除しますか？' }
+
