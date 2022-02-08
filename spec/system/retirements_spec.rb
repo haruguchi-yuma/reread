@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe 'Retirements', type: :system do
@@ -13,7 +15,7 @@ RSpec.describe 'Retirements', type: :system do
         expect do
           expect(page.accept_confirm).to eq '本当に削除しますか？'
           expect(page).to have_content 'アカウントを削除しました'
-        end.to change{ User.count }.by(-1)
+        end.to change { User.count }.by(-1)
 
         expect(current_path).to eq root_path
         expect(page).to have_content 'Welcome'
