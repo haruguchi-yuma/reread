@@ -9,11 +9,17 @@ module SignInHelper
       info: { image: user.image_url }
     )
     visit root_path
+    ensure_browser_size if Capybara.current_driver == :selenium_chrome_headless
+
     click_on 'GitHubでログイン'
     @current_user = user
   end
 
   def current_user
     @current_user
+  end
+
+  def ensure_browser_size(width = 1280, height = 720)
+    Capybara.current_session.driver.browser.manage.window.resize_to(width, height)
   end
 end
