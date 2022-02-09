@@ -1,6 +1,6 @@
 nav.navbar.is-light
   .navbar-brand
-    = link_to 'reRead', root_path, class: 'navbar-item'
+    = link_to 'reRead', root_path, class: 'navbar-item logo-title'
     .navbar-burger[data-target="navbarExampleTransparentExample"]
         span
         span
@@ -8,8 +8,8 @@ nav.navbar.is-light
   #navbarExampleTransparentExample.navbar-menu
     .navbar-end
       - if logged_in?
-        = image_tag @current_user.image_url, width: 50, height: 50
-        = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
-        = link_to 'アカウント削除', new_retirement_path, class: 'navbar-item'
+        = image_tag @current_user.image_url, class: 'image is-32x32 my-auto'
+        = link_to 'ログアウト', logout_path, class: 'navbar-item header-link', method: :delete
+        = link_to 'アカウント削除', new_retirement_path, class: 'navbar-item header-link'
       - else
         = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
