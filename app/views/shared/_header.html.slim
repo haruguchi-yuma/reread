@@ -1,10 +1,15 @@
 nav.navbar.is-light
-  .container.navbar-brand
-      = link_to 'reRead', root_path, class: 'navbar-item'
-  .navbar-end
-    - if logged_in?
-      = image_tag @current_user.image_url, width: 50, height: 30
-      = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
-      = link_to 'アカウント削除', new_retirement_path, class: 'navbar-item'
-    - else
-      = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
+  .navbar-brand
+    = link_to 'reRead', root_path, class: 'navbar-item'
+    .navbar-burger[data-target="navbarExampleTransparentExample"]
+        span
+        span
+        span
+  #navbarExampleTransparentExample.navbar-menu
+    .navbar-end
+      - if logged_in?
+        = image_tag @current_user.image_url, width: 50, height: 50
+        = link_to 'ログアウト', logout_path, class: 'navbar-item', method: :delete
+        = link_to 'アカウント削除', new_retirement_path, class: 'navbar-item'
+      - else
+        = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
