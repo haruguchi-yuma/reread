@@ -1,2 +1,5 @@
-h1 ReadHistories#new
-p Find me in app/views/read_histories/new.html.slim
+- content_for(:html_title) { '再読日の設定' }
+
+h2.title.is-4 = "「#{@read_history.book.title}」を読み返す日の設定"
+
+= render 'form', read_history: @read_history
