@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'read_histories/new'
   root 'welcome#index'
   get '/auth/:provider/callback', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
@@ -8,5 +7,6 @@ Rails.application.routes.draw do
 
   resources :books, except: %i(new) do
     resource :photos, only: %i(new create)
+    resource :read_histories, only: %i(new create)
   end
 end
