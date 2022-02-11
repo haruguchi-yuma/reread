@@ -5,12 +5,12 @@ class BooksController < ApplicationController
   before_action :allow_only_book_pages_from_your_own_book, only: %i[show edit update destroy]
   def index
     @book = current_user.books.new
-    @books = current_user.books.order(created_at: :desc)
+    @books = current_user.books.order(created_at: :desc).page(params[:page])
   end
 
   def create
     @book = current_user.books.new(book_params)
-    @books = current_user.books.order(created_at: :desc)
+    @books = current_user.books.order(created_at: :desc).page(params[:page])
 
     if @book.save
       redirect_to books_url, notice: '書籍を登録しました'

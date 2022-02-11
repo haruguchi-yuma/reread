@@ -61,6 +61,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'dotenv-rails'
 gem 'html2slim'
+gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
