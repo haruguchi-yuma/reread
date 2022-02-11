@@ -68,3 +68,4 @@ gem 'rails-i18n'
 gem 'shrine'
 gem 'slim-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'kaminari'
