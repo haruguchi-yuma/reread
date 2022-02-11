@@ -1,2 +1,4 @@
+- # rubocop:disable Rails/OutputSafety
 li
   = link_to_unless current_page.last?, t('views.pagination.last').html_safe, url, remote: remote, class: "pagination-link#{' is-current' if current_page.last?}"
+- # rubocop:enable Rails/OutputSafety
