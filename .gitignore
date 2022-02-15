@@ -39,3 +39,4 @@ yarn-debug.log*
 /public/uploads
 
 client_secret.json
+credentials.yaml

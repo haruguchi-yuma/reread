@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'welcome#index'
   get '/auth/:provider/callback', to: 'sessions#create'
+  get "oauth2callback", to:"read_histories#callback"
   delete '/logout', to: 'sessions#destroy'
 
   resource :retirement
