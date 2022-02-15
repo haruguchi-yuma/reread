@@ -37,3 +37,5 @@ yarn-debug.log*
 
 /.env
 /public/uploads
+
+client_secret.json
