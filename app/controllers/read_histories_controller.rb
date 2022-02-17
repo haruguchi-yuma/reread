@@ -9,7 +9,6 @@ class ReadHistoriesController < ApplicationController
   APPLICATION_NAME = "reRead(テスト)".freeze
   TOKEN_PATH = "token.yaml".freeze
   SCOPE = Google::Apis::CalendarV3::AUTH_CALENDAR
-  MY_CALENDAR_ID = 'primary'
 
   def new
     @read_history = Book.find(params[:book_id]).read_histories.new
@@ -60,7 +59,6 @@ class ReadHistoriesController < ApplicationController
     credentials = authorizer.get_credentials user_id
     if credentials.nil?
       code = session[:code]
-      url = authorizer.get_authorization_url(base_url: REDIRECT_URI)
       credentials = authorizer.get_and_store_credentials_from_code(
         user_id: user_id, code: code, base_url: REDIRECT_URI
       )
