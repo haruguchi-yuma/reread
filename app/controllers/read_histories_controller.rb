@@ -7,7 +7,6 @@ require "fileutils"
 class ReadHistoriesController < ApplicationController
   REDIRECT_URI = "http://localhost:3000/oauth2callback".freeze
   APPLICATION_NAME = "reRead(テスト)".freeze
-  CLIENT_SECRET_PATH = "client_secret.json".freeze
   TOKEN_PATH = "credentials.yaml".freeze
   SCOPE = Google::Apis::CalendarV3::AUTH_CALENDAR
   MY_CALENDAR_ID = 'primary'
@@ -54,7 +53,7 @@ class ReadHistoriesController < ApplicationController
   end
 
   def authorize
-    client_id = Google::Auth::ClientId.from_file CLIENT_SECRET_PATH
+    client_id = Google::Auth::ClientId.from_file "client_secret.json"
     token_store = Google::Auth::Stores::FileTokenStore.new file: TOKEN_PATH
     authorizer = Google::Auth::UserAuthorizer.new client_id, SCOPE, token_store
     user_id = "primary"

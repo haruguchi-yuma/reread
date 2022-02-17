@@ -12,4 +12,4 @@ nav.navbar.is-light
         = link_to 'ログアウト', logout_path, class: 'navbar-item header-link', method: :delete
         = link_to 'アカウント削除', new_retirement_path, class: 'navbar-item header-link'
       - else
-        = link_to 'GitHubでログイン', '/auth/github', class: 'navbar-item', method: :post
+        = link_to 'Googleでログイン', '/auth/google_oauth2', class: 'navbar-item', method: :post
