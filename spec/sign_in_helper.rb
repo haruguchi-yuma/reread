@@ -11,7 +11,7 @@ module SignInHelper
     visit root_path
     ensure_browser_size if Capybara.current_driver == :selenium_chrome_headless
 
-    click_on 'GitHubでログイン'
+    click_on 'Googleでログイン'
     @current_user = user
   end
 
