@@ -38,5 +38,5 @@ yarn-debug.log*
 /.env
 /public/uploads
 
-client_secret.json
-credentials.yaml
+credentials.json
+token.yaml
