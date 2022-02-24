@@ -137,6 +137,8 @@ GEM
     google-api-client (0.53.0)
       google-apis-core (~> 0.1)
       google-apis-generator (~> 0.1)
+    google-apis-calendar_v3 (0.15.0)
+      google-apis-core (>= 0.4, < 2.a)
     google-apis-core (0.4.2)
       addressable (~> 2.5, >= 2.5.1)
       googleauth (>= 0.16.2, < 2.a)
@@ -438,6 +440,7 @@ DEPENDENCIES
   dotenv-rails
   factory_bot_rails
   google-api-client
+  google-apis-calendar_v3 (~> 0.15.0)
   html2slim
   jbuilder (~> 2.7)
   kaminari

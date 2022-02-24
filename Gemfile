@@ -71,3 +71,4 @@ gem 'slim-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 gem 'omniauth-google-oauth2'
 gem 'google-api-client'
+gem 'google-apis-calendar_v3', '~> 0.15.0'
