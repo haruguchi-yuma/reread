@@ -1,14 +1,14 @@
 # require "google/apis/calendar_v3"
 # require "googleauth"
-require "googleauth/stores/file_token_store"
+# require "googleauth/stores/file_token_store"
 # require "date"
 # require "fileutils"
 
 class ReadHistoriesController < ApplicationController
-  REDIRECT_URI = "http://localhost:3000/oauth2callback".freeze
-  APPLICATION_NAME = "reRead(テスト)".freeze
-  TOKEN_PATH = "token.yaml".freeze
-  SCOPE = Google::Apis::CalendarV3::AUTH_CALENDAR
+  # REDIRECT_URI = "http://localhost:3000/oauth2callback".freeze
+  # APPLICATION_NAME = "reRead(テスト)".freeze
+  # TOKEN_PATH = "token.yaml".freeze
+  # SCOPE = Google::Apis::CalendarV3::AUTH_CALENDAR
 
   def new
     @read_history = Book.find(params[:book_id]).read_histories.new
@@ -18,9 +18,15 @@ class ReadHistoriesController < ApplicationController
     @read_history = Book.find(params[:book_id]).read_histories.new(read_history_params)
 
     if @read_history.save
+      client = Signet::OAuth2::Client.new(
+        client_id: ENV['GOOGLE_CLIENT_ID'],
+        client_secret: ENV['GOOGLE_CLIENT_SECRET'],
+        access_token: Redis.current.get(@current_user.uid)
+      )
+
       calendar = Google::Apis::CalendarV3::CalendarService.new
-      calendar.client_options.application_name = APPLICATION_NAME
-      calendar.authorization = authorize
+      calendar.authorization = client
+      # access_token
       create_event(calendar, @read_history)
       redirect_to book_path(@read_history.book), notice: '再読日を設定しました'
     else
@@ -43,30 +49,34 @@ class ReadHistoriesController < ApplicationController
     service.insert_event('primary', event)
   end
 
-  def callback
-    session[:code] = params[:code]
-    calendar = Google::Apis::CalendarV3::CalendarService.new
-    calendar.client_options.application_name = APPLICATION_NAME
-    calendar.authorization = authorize
-    redirect_to books_path
-  end
+  # def callback
+  #   session[:code] = params[:code]
+  #   calendar = Google::Apis::CalendarV3::CalendarService.new
+  #   calendar.client_options.application_name = APPLICATION_NAME
+  #   calendar.authorization = authorize
+  #   redirect_to books_path
+  # end
 
-  def authorize
-    client_id = Google::Auth::ClientId.from_file "credentials.json"
-    token_store = Google::Auth::Stores::FileTokenStore.new file: TOKEN_PATH
-    authorizer = Google::Auth::UserAuthorizer.new client_id, SCOPE, token_store
-    user_id = "primary"
-    credentials = authorizer.get_credentials user_id
-    if credentials.nil?
-      code = session[:code]
-      credentials = authorizer.get_and_store_credentials_from_code(
-        user_id: user_id, code: code, base_url: REDIRECT_URI
-      )
-    end
-    credentials
-  end
+  # def authorize
+  #   client_id = Google::Auth::ClientId.from_file "credentials.json"
+  #   token_store = Google::Auth::Stores::RedisTokenStore.new
+  #   authorizer = Google::Auth::UserAuthorizer.new client_id, SCOPE, token_store
+  #   user_id = "primary"
+  #   credentials = authorizer.get_credentials user_id
+  #   if credentials.nil?
+  #     code = session[:code]
+  #     credentials = authorizer.get_and_store_credentials_from_code(
+  #       user_id: user_id, code: code, base_url: REDIRECT_URI
+  #     )
+  #   end
+  #   credentials
+  # end
 
   private
+
+  # def access_token
+  #   Rails.cache ~
+  # end
 
   def read_history_params
     params.require(:read_history).permit(:summary, :read_back_at, :description)

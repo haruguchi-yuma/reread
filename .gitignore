@@ -39,4 +39,4 @@ yarn-debug.log*
 /public/uploads
 
 credentials.json
-token.yaml
+dump.rdb
