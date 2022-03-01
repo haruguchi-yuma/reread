@@ -8,12 +8,7 @@ class SessionsController < ApplicationController
     user = User.find_or_create_from_auth_hash!(auth_hash)
     session[:user_id] = user.id
 
-    expires_at = auth_hash.credentials.expires_at
-    Rails.cache.write('expires_at', expires_at)
-    Rails.cache.fetch(user.uid, expires_in: expires_at) do
-      auth_hash.credentials.token
-    end
-    Rails.cache.write(user.uid + user.id.to_s, auth_hash.credentials.refresh_token)
+    user.store_credentials_in_cache(auth_hash)
     redirect_to books_path, notice: 'ログインしました'
   end
 

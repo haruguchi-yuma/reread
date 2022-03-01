@@ -41,8 +41,6 @@ class ReadHistoriesController < ApplicationController
     end
   end
 
-  private
-
   def create_event(service, read_history)
     event = Google::Apis::CalendarV3::Event.new(
       summary: read_history.summary,
@@ -54,9 +52,10 @@ class ReadHistoriesController < ApplicationController
       ),
       description: read_history.description
     )
-
     service.insert_event('primary', event)
   end
+
+  private
 
   def read_history_params
     params.require(:read_history).permit(:summary, :read_back_at, :description)
