@@ -60,15 +60,15 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'dotenv-rails'
+gem 'google-api-client'
+gem 'google-apis-calendar_v3', '~> 0.15.0'
 gem 'html2slim'
 gem 'kaminari'
 gem 'omniauth'
 gem 'omniauth-github'
+gem 'omniauth-google-oauth2'
 gem 'omniauth-rails_csrf_protection'
 gem 'rails-i18n'
 gem 'shrine'
 gem 'slim-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'omniauth-google-oauth2'
-gem 'google-api-client'
-gem 'google-apis-calendar_v3', '~> 0.15.0'

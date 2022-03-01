@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ReadHistory < ApplicationRecord
   belongs_to :book
   validates :summary, length: { maximum: 50 }, presence: true
@@ -10,8 +12,6 @@ class ReadHistory < ApplicationRecord
   def date_to_read_back_should_be_after_today
     return unless read_back_at
 
-    if read_back_at <= Date.today
-      errors.add(:read_back_at, "は今日より後の日付で設定してください")
-    end
+    errors.add(:read_back_at, 'は今日より後の日付で設定してください') if read_back_at <= Time.zone.today
   end
 end

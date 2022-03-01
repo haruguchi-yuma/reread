@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CalendarClient
   def initialize(user)
     @service = Google::Apis::CalendarV3::CalendarService.new
@@ -35,7 +37,8 @@ class CalendarClient
   end
 
   def refresh!
-    return if !@client.expired?
+    return unless @client.expired?
+
     @client.refresh!
     Rails.cache.fetch(@user.uid, expires_in: @client.expires_at) do
       @client.access_token
