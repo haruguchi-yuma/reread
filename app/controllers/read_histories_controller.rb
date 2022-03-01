@@ -21,18 +21,27 @@ class ReadHistoriesController < ApplicationController
       client = Signet::OAuth2::Client.new(
         client_id: ENV['GOOGLE_CLIENT_ID'],
         client_secret: ENV['GOOGLE_CLIENT_SECRET'],
-        access_token: Redis.current.get(@current_user.uid)
+        token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
+        access_token: Rails.cache.read(current_user.uid),
+        refresh_token: Rails.cache.read(current_user.uid + @current_user.id.to_s),
+        expires_at: Rails.cache.read('expires_at')
       )
-
+      if client.expired?
+        client.refresh!
+        Rails.cache.fetch(current_user.uid, expires_in: client.expires_at) do
+          client.access_token
+        end
+      end
       calendar = Google::Apis::CalendarV3::CalendarService.new
       calendar.authorization = client
-      # access_token
       create_event(calendar, @read_history)
       redirect_to book_path(@read_history.book), notice: '再読日を設定しました'
     else
       render :new
     end
   end
+
+  private
 
   def create_event(service, read_history)
     event = Google::Apis::CalendarV3::Event.new(
@@ -48,35 +57,6 @@ class ReadHistoriesController < ApplicationController
 
     service.insert_event('primary', event)
   end
-
-  # def callback
-  #   session[:code] = params[:code]
-  #   calendar = Google::Apis::CalendarV3::CalendarService.new
-  #   calendar.client_options.application_name = APPLICATION_NAME
-  #   calendar.authorization = authorize
-  #   redirect_to books_path
-  # end
-
-  # def authorize
-  #   client_id = Google::Auth::ClientId.from_file "credentials.json"
-  #   token_store = Google::Auth::Stores::RedisTokenStore.new
-  #   authorizer = Google::Auth::UserAuthorizer.new client_id, SCOPE, token_store
-  #   user_id = "primary"
-  #   credentials = authorizer.get_credentials user_id
-  #   if credentials.nil?
-  #     code = session[:code]
-  #     credentials = authorizer.get_and_store_credentials_from_code(
-  #       user_id: user_id, code: code, base_url: REDIRECT_URI
-  #     )
-  #   end
-  #   credentials
-  # end
-
-  private
-
-  # def access_token
-  #   Rails.cache ~
-  # end
 
   def read_history_params
     params.require(:read_history).permit(:summary, :read_back_at, :description)
