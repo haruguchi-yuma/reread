@@ -3,11 +3,16 @@ ja:
     models:
       book: 書籍
       photo: 写真
+      read_history: 読み返しの履歴
     attributes:
       book:
         title: 書籍名
       photo:
         image: 写真
+      read_history:
+        summary: サマリー
+        read_back_at: 読み返す日
+        description: メモ
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
