@@ -37,3 +37,6 @@ yarn-debug.log*
 
 /.env
 /public/uploads
+
+credentials.json
+dump.rdb

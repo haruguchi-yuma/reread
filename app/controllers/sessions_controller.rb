@@ -4,12 +4,16 @@ class SessionsController < ApplicationController
   skip_before_action :authenticate, only: :create
 
   def create
-    user = User.find_or_create_from_auth_hash!(request.env['omniauth.auth'])
+    auth_hash = request.env['omniauth.auth']
+    user = User.find_or_create_from_auth_hash!(auth_hash)
     session[:user_id] = user.id
+
+    user.store_credentials_in_cache(auth_hash)
     redirect_to books_path, notice: 'ログインしました'
   end
 
   def destroy
+    Rails.cache.delete(current_user.uid + current_user.id.to_s)
     reset_session
     redirect_to root_path, notice: 'ログアウトしました'
   end

@@ -2,16 +2,22 @@
 
 module SignInHelper
   def sign_in_as(user)
-    OmniAuth.config.test_mode = true
     OmniAuth.config.add_mock(
       user.provider,
-      uid: user.uid,
-      info: { image: user.image_url }
+      {
+        uid: user.uid,
+        info: { image: user.image_url },
+        credentials: {
+          token: 'hoge',
+          refresh_token: 'hoge',
+          expires_at: Time.zone.now.to_i
+        }
+      }
     )
     visit root_path
     ensure_browser_size if Capybara.current_driver == :selenium_chrome_headless
 
-    click_on 'GitHubでログイン'
+    click_on 'Googleでログイン'
     @current_user = user
   end
 
