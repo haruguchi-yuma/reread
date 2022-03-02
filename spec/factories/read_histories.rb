@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :read_history do
-    summary { 'MyString' }
-    description { 'MyText' }
-    history { '2022-02-10' }
-    book { nil }
+    summary { '本のタイトル' }
+    read_back_at { Time.zone.today + 1.day }
+    description { '' }
+    association :book
   end
 end
