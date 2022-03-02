@@ -12,6 +12,6 @@ class ReadHistory < ApplicationRecord
   def date_to_read_back_should_be_after_today
     return unless read_back_at
 
-    errors.add(:read_back_at, 'は今日より後の日付で設定してください') if read_back_at <= Time.zone.today
+    errors.add(:read_back_at, 'は今日より後の日付に設定してください') if read_back_at <= Time.zone.today
   end
 end
