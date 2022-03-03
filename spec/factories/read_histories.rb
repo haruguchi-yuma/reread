@@ -6,5 +6,17 @@ FactoryBot.define do
     read_back_at { Time.zone.today + 1.day }
     description { '' }
     association :book
+
+    trait :without_summary do
+      summary { '' }
+    end
+
+    trait :without_read_back_at do
+      read_back_at { '' }
+    end
+
+    trait :date_is_before_today do
+      read_back_at { Time.zone.today - 1.day }
+    end
   end
 end
