@@ -7,6 +7,7 @@ import Rails from '@rails/ujs'
 import * as ActiveStorage from '@rails/activestorage'
 
 require('../src/header')
+require('./preview')
 
 Rails.start()
 ActiveStorage.start()
