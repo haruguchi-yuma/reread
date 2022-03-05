@@ -5,7 +5,10 @@
     h1.title.is-3 = @book.title
     = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive'
   .div
-    = link_to '写真投稿', new_book_photos_path(@book), class: 'button is-warning is-rounded'
+    = link_to new_book_photos_path(@book), class: 'button is-primary is-rounded' do
+      span.icon.mr-1
+        i.fas.fa-camera
+      = '写真投稿'
 
 .photo-info.is-flex.is-justify-content-space-between.is-align-items-center.py-2
   -  if @photos.present?
@@ -17,13 +20,12 @@
   .google-button.has-text-right
     = link_to 'Googleカレンダーに再読日を設定する', new_book_read_histories_path(@book), class: 'button is-small'
 
-.photo-index
+.photo-index.is-flex.is-flex-wrap-wrap.is-align-content-flex-start
   - if @photos.present?
     - @photos.each do |photo|
-      .card.my-2
-        .card-image
-          - if photo.image
-            = image_tag photo.image[:medium].url, class: "image-#{photo.id}"
+      .photo-section.m-3
+        - if photo.image
+          = image_tag photo.image[:medium].url, class: "image-#{photo.id}"
   - else
     p.has-text-centered = '写真の投稿はまだありません'
 

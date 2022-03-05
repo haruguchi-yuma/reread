@@ -13,7 +13,7 @@ class ImageUploader < Shrine
       pipeline = ImageProcessing::MiniMagick.source(original)
 
       versions[:large]  = pipeline.resize_to_limit!(800, 800)
-      versions[:medium] = pipeline.resize_to_limit!(500, 500)
+      versions[:medium] = pipeline.resize_to_limit!(400, 400)
       versions[:small]  = pipeline.resize_to_limit!(150, 150)
     end
 
