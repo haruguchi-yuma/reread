@@ -9,7 +9,7 @@ if (document.URL.match(/new/)) {
       imageElement.appendChild(blobImage)
     }
 
-    document.getElementById('photo-image').addEventListener('change', (e) => {
+    document.getElementById('photo_image').addEventListener('change', (e) => {
       const imageContent = document.querySelector('img')
       if (imageContent) imageContent.remove()
 
