@@ -1,19 +1,35 @@
 - content_for(:html_title) { "投稿した写真(#{@book.title})" }
-h2.title.is-2 = @book.title
-= link_to '書籍の編集', edit_book_path(@book), class: 'button'
-hr
--  if @photos.present?
-  p = "投稿日: #{last_update_of_photo(@book)}"
-p = "写真の枚数: #{@photos.count}枚"
-= link_to '写真投稿', new_book_photos_path(@book), class: 'button'
-= link_to 'Googleカレンダーに再読日を設定する', new_book_read_histories_path(@book), class: 'button'
-hr
 
-- if @photos.present?
-  ul.columns
+.book-info.is-flex.is-justify-content-space-between.is-align-items-center.py-2
+  .book-title.is-flex.is-align-items-center
+    h1.title.is-3 = @book.title
+    = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive'
+  .div
+    = link_to new_book_photos_path(@book), class: 'button is-primary is-rounded' do
+      span.icon.mr-1
+        i.fas.fa-camera
+      = '写真投稿'
+
+.photo-info.is-flex.is-justify-content-space-between.is-align-items-center.py-2
+  -  if @photos.present?
+    p = "投稿日: #{last_update_of_photo(@book)}"
+  - else
+    p = '投稿日: --------'
+  .photo-count
+    p = "写真の枚数: #{@photos.count}枚"
+  .google-button.has-text-right
+    = link_to 'Googleカレンダーに再読日を設定する', new_book_read_histories_path(@book), class: 'button is-small'
+
+.photo-index.is-flex.is-flex-wrap-wrap.is-align-content-flex-start
+  - if @photos.present?
     - @photos.each do |photo|
-      li class="column image-#{photo.id}"
-        = image_tag photo.image[:medium].url if photo.image
-= link_to '戻る', books_path
-= link_to 'この書籍を削除する', book_path(@book), method: :delete,
-  data: { confirm: '投稿した写真も削除されます。よろしいですか？' }, class: 'button'
+      .photo-section.m-3
+        - if photo.image
+          = image_tag photo.image[:medium].url, class: "image-#{photo.id}"
+  - else
+    p.has-text-centered = '写真の投稿はまだありません'
+
+.is-flex.is-justify-content-space-between
+  = link_to '戻る', books_path
+  = link_to 'この書籍を削除する', book_path(@book), method: :delete,
+      data: { confirm: '投稿した写真も削除されます。よろしいですか？' }, class: 'button is-small'
