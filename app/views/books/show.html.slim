@@ -20,7 +20,7 @@
   .google-button.has-text-right
     = link_to 'Googleカレンダーに再読日を設定する', new_book_read_histories_path(@book), class: 'button is-small'
 
-div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'is-justify-content-center' unless @photos.present?}"
+div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'is-justify-content-center' if @photos.blank?}"
   - if @photos.present?
     - @photos.each do |photo|
       .photo-section.m-3
