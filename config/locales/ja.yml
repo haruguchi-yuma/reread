@@ -9,6 +9,7 @@ ja:
         title: 書籍名
       photo:
         image: 写真
+        updated_at: 投稿日
       read_history:
         summary: サマリー
         read_back_at: 読み返す日
@@ -16,4 +17,7 @@ ja:
   time:
     formats:
       default: "%Y/%m/%d %H:%M:%S"
+      date: "%Y年%m月%d日"
+  date:
+    formats:
       date: "%Y年%m月%d日"
