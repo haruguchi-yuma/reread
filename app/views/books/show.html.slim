@@ -20,14 +20,23 @@
   .google-button.has-text-right
     = link_to 'Googleカレンダーに再読日を設定する', new_book_read_histories_path(@book), class: 'button is-small'
 
-.photo-index.is-flex.is-flex-wrap-wrap.is-align-content-flex-start
+div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'is-justify-content-center' if @photos.blank?}"
   - if @photos.present?
     - @photos.each do |photo|
       .photo-section.m-3
         - if photo.image
           = image_tag photo.image[:medium].url, class: "image-#{photo.id}"
   - else
-    p.has-text-centered = '写真の投稿はまだありません'
+    .blank-page.has-text-centered.has-text-grey
+      .o-empty-message__text
+        | 写真の投稿はまだありません
+      .is-size-1
+        i.far.fa-sad-tear
+      .div
+        = link_to new_book_photos_path(@book), class: 'button is-primary is-rounded' do
+          span.icon.mr-1
+            i.fas.fa-camera
+          = '写真投稿'
 
 .is-flex.is-justify-content-space-between
   = link_to '戻る', books_path
