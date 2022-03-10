@@ -57,12 +57,37 @@ RSpec.describe 'Books', type: :system do
   describe '削除機能' do
     let(:book) { FactoryBot.create(:book, title: '最初の書籍', user: user_a) }
 
-    context 'ユーザーAが作成したとき' do
+    context '写真が一枚も投稿されていないとき' do
       it '削除できる', js: true do
         sign_in_as user_a
         visit book_path(book)
 
         click_on 'この書籍を削除する'
+        expect do
+          expect(page.accept_confirm).to eq '投稿した写真も削除されます。よろしいですか？'
+          expect(page).to have_content '「最初の書籍」を削除しました'
+        end.to change(user_a.books, :count).by(-1)
+      end
+
+      it 'ユーザーBは削除できない' do
+        sign_in_as user_b
+        visit book_path(book)
+
+        expect(page).not_to have_link 'この書籍を削除する'
+        expect(current_path).to eq books_path
+      end
+    end
+
+    context '写真が投稿されているとき' do
+      let!(:photo) { FactoryBot.create(:photo, book: book) }
+
+      it '削除できる', js: true do
+        sign_in_as user_a
+        visit book_path(book)
+
+        expect(page).to have_selector ".image-#{photo.id}"
+        click_on 'この書籍を削除する'
+
         expect do
           expect(page.accept_confirm).to eq '投稿した写真も削除されます。よろしいですか？'
           expect(page).to have_content '「最初の書籍」を削除しました'
