@@ -17,6 +17,6 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.fetch(:photo, {}).permit(:image)
+    params.fetch(:photo, {}).permit(:image, :note)
   end
 end
