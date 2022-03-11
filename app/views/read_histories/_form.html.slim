@@ -1,19 +1,20 @@
-= form_with(model: [read_history.book, read_history]) do |f|
+= form_with(model: [read_history.book, read_history], class: 'read-history-form') do |f|
   - if read_history.errors.any?
     #error_explanation.message.is-light
       ul
         - read_history.errors.full_messages.each do |message|
           li.message-body = message
-  .field.is-horizontal
+  .field
     .control
       = f.label :summary, class: 'label'
       = f.text_field :summary, class: 'input', value: "#{read_history.book.title}を読み返す日"
-  .field.is-horizontal
+  .field
     .control
       = f.label :read_back_at, class: 'label'
       = f.date_field :read_back_at, class: 'input'
   .field
-    = f.label :description, class: 'label'
-    = f.text_area :description, class: 'textarea', placeholder: '(任意)'
+    .control
+      = f.label :description, class: 'label'
+      = f.text_area :description, class: 'textarea', placeholder: '(任意)'
 
   = f.submit 'Googleカレンダーに設定', class: 'button is-info'
