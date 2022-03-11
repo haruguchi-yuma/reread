@@ -8,6 +8,7 @@ FactoryBot.define do
         'image/png'
       )
     end
+    note { 'メモの内容です' }
     association :book
 
     trait :within_file_size do

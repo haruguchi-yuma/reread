@@ -9,6 +9,7 @@ ja:
         title: 書籍名
       photo:
         image: 写真
+        note: メモ
         updated_at: 投稿日
       read_history:
         summary: サマリー

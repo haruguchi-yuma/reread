@@ -35,4 +35,20 @@ RSpec.describe Photo, type: :model do
     photo.valid?
     expect(photo.errors[:image]).to include('が選択されていません')
   end
+
+  it 'メモが入力されていなくても有効なこと' do
+    photo = FactoryBot.build(:photo, note: nil)
+    expect(photo).to be_valid
+  end
+
+  it 'メモに140文字入力されている場合は有効な状態であること' do
+    photo = FactoryBot.build(:photo, note: 'a' * 140)
+    expect(photo).to be_valid
+  end
+
+  it 'メモに141文字以上入力されている場合は無効な状態であること' do
+    photo = FactoryBot.build(:photo, note: 'a' * 141)
+    photo.valid?
+    expect(photo.errors[:note]).to include('は140文字以内で入力してください')
+  end
 end

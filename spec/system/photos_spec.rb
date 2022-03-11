@@ -19,6 +19,13 @@ RSpec.describe 'Photos', type: :system do
           expect have_selector 'img'
         end
       end
+
+      it 'メモが表示される' do
+        sign_in_as user_a
+        visit book_path(book)
+
+        have_content 'メモの内容です'
+      end
     end
 
     context 'ユーザーBがログインしているとき' do
@@ -27,6 +34,14 @@ RSpec.describe 'Photos', type: :system do
         visit book_path(book)
 
         expect(page).not_to have_selector ".image-#{photo.id}"
+        expect(current_path).to eq books_path
+      end
+
+      it 'ユーザーAが投稿した写真のメモは表示されない' do
+        sign_in_as user_b
+        visit book_path(book)
+
+        expect(page).not_to have_content 'メモの内容です'
         expect(current_path).to eq books_path
       end
     end
@@ -42,6 +57,7 @@ RSpec.describe 'Photos', type: :system do
       it '投稿できる' do
         expect do
           attach_file '写真', "#{Rails.root}/spec/factories/test_640x320.png"
+          fill_in 'メモ', with: 'これはメモです'
           click_on '投稿する'
         end.to change(book.photos, :count).by(1)
 
@@ -52,10 +68,39 @@ RSpec.describe 'Photos', type: :system do
     context 'ファイルを選択しなかったとき' do
       it 'エラーになる' do
         expect do
+          fill_in 'メモ', with: 'これはメモです'
           click_on '投稿する'
         end.to change(book.photos, :count).by(0)
+
         within '#error_explanation' do
           expect(page).to have_content '写真が選択されていません'
+        end
+      end
+    end
+
+    context 'メモを入力したとき' do
+      it '投稿できる' do
+        expect {
+          attach_file '写真', "#{Rails.root}/spec/factories/test_640x320.png"
+          fill_in 'メモ', with: 'これはメモです'
+          click_on '投稿する'
+        }.to change(book.photos, :count).by(1)
+
+        expect(page).to have_selector '.notification', text: '写真を投稿しました'
+        expect(page).to have_content 'これはメモです'
+      end
+    end
+
+    context 'メモに140字より多い文字数を入力したとき' do
+      it '投稿できない' do
+        expect {
+          attach_file '写真', "#{Rails.root}/spec/factories/test_640x320.png"
+          fill_in 'メモ', with: 'a' * 141
+          click_on '投稿する'
+        }.to change(book.photos, :count).by(0)
+
+        within '#error_explanation' do
+          expect(page).to have_content 'メモは140文字以内で入力してください'
         end
       end
     end
