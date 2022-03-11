@@ -18,7 +18,10 @@
   .photo-count
     p = "写真の枚数: #{@photos.count}枚"
   .google-button.has-text-right
-    = link_to 'Googleカレンダーに再読日を設定する', new_book_read_histories_path(@book), class: 'button is-info is-small'
+    = link_to new_book_read_histories_path(@book), class: 'button is-info is-rounded' do
+      span.icon.mr-1
+        i.fas.fa-calendar-alt
+      = 'Googleカレンダーに読み返す日を設定する'
 
 div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'is-justify-content-center' if @photos.blank?}"
   - if @photos.present?
