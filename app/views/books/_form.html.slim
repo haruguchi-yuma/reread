@@ -4,10 +4,9 @@
       ul
         - book.errors.full_messages.each do |message|
           li.message-body = message
-  .field
-    .control
+  .field.is-flex.is-align-items-flex-end
+    .control.is-flex-grow-2.mr-2.
       = f.label :title, class: 'label'
       = f.text_field :title, class: 'input'
-  .field
     .control
-      = f.submit class: 'button'
+      = f.submit class: 'button is-warning is-rounded'
