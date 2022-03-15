@@ -80,11 +80,11 @@ RSpec.describe 'Photos', type: :system do
 
     context 'メモを入力したとき' do
       it '投稿できる' do
-        expect {
+        expect do
           attach_file '写真', "#{Rails.root}/spec/factories/test_640x320.png"
           fill_in 'メモ', with: 'これはメモです'
           click_on '投稿する'
-        }.to change(book.photos, :count).by(1)
+        end.to change(book.photos, :count).by(1)
 
         expect(page).to have_selector '.notification', text: '写真を投稿しました'
         expect(page).to have_content 'これはメモです'
@@ -93,11 +93,11 @@ RSpec.describe 'Photos', type: :system do
 
     context 'メモに140字より多い文字数を入力したとき' do
       it '投稿できない' do
-        expect {
+        expect do
           attach_file '写真', "#{Rails.root}/spec/factories/test_640x320.png"
           fill_in 'メモ', with: 'a' * 141
           click_on '投稿する'
-        }.to change(book.photos, :count).by(0)
+        end.to change(book.photos, :count).by(0)
 
         within '#error_explanation' do
           expect(page).to have_content 'メモは140文字以内で入力してください'
