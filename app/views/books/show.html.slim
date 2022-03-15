@@ -45,6 +45,6 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
           = '写真投稿'
 
 .is-flex.is-justify-content-space-between
-  = link_to '戻る', books_path
   = link_to 'この書籍を削除する', book_path(@book), method: :delete,
       data: { confirm: '投稿した写真も削除されます。よろしいですか？' }, class: 'button is-small'
+  = link_to '戻る', books_path
