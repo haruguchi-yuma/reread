@@ -1,5 +1,7 @@
 - content_for(:html_title) { '再読日の設定' }
 
-h2.title.is-4 = "「#{@read_history.book.title}」を読み返す日の設定"
+h1.title.is-3 = "「#{@read_history.book.title}」を読み返す日の設定"
 
 = render 'form', read_history: @read_history
+.div.has-text-right
+  = link_to '戻る', book_path(@read_history.book)

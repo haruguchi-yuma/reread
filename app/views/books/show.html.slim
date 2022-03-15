@@ -5,7 +5,7 @@
     h1.title.is-3 = @book.title
     = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive'
   .div
-    = link_to new_book_photos_path(@book), class: 'button is-primary is-rounded' do
+    = link_to new_book_photos_path(@book), class: 'button is-warning is-rounded' do
       span.icon.mr-1
         i.fas.fa-camera
       = '写真投稿'
@@ -18,7 +18,10 @@
   .photo-count
     p = "写真の枚数: #{@photos.count}枚"
   .google-button.has-text-right
-    = link_to 'Googleカレンダーに再読日を設定する', new_book_read_histories_path(@book), class: 'button is-small'
+    = link_to new_book_read_histories_path(@book), class: 'button is-info is-rounded' do
+      span.icon.mr-1
+        i.fas.fa-calendar-alt
+      = 'Googleカレンダーに読み返す日を設定する'
 
 div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'is-justify-content-center' if @photos.blank?}"
   - if @photos.present?
@@ -36,12 +39,12 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
       .is-size-1
         i.far.fa-sad-tear
       .div
-        = link_to new_book_photos_path(@book), class: 'button is-primary is-rounded' do
+        = link_to new_book_photos_path(@book), class: 'button is-warning is-rounded' do
           span.icon.mr-1
             i.fas.fa-camera
           = '写真投稿'
 
 .is-flex.is-justify-content-space-between
-  = link_to '戻る', books_path
   = link_to 'この書籍を削除する', book_path(@book), method: :delete,
       data: { confirm: '投稿した写真も削除されます。よろしいですか？' }, class: 'button is-small'
+  = link_to '戻る', books_path
