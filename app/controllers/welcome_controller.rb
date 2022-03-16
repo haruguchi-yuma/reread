@@ -10,4 +10,8 @@ class WelcomeController < ApplicationController
   def tos
     current_user
   end
+
+  def privacy_policy
+    current_user
+  end
 end
