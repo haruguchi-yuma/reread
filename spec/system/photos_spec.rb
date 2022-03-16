@@ -24,7 +24,14 @@ RSpec.describe 'Photos', type: :system do
         sign_in_as user_a
         visit book_path(book)
 
-        have_content 'メモの内容です'
+        expect(page).to have_content 'メモの内容です'
+      end
+
+      it '投稿した写真の枚数が表示される' do
+        sign_in_as user_a
+        visit book_path(book)
+
+        expect(page).to have_selector '.photo-count', text: '1枚'
       end
     end
 
