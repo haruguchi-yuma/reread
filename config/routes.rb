@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
+  get 'tos', to: 'welcome#tos', as: 'tos'
   get '/auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
   get "oauth2callback", to:"read_histories#callback"

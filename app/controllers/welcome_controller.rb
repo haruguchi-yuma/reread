@@ -6,4 +6,8 @@ class WelcomeController < ApplicationController
   def index
     redirect_to books_path if logged_in?
   end
+
+  def tos
+    current_user
+  end
 end
