@@ -17,7 +17,10 @@ hr
     tbody
       - @books.each do |book|
         tr
-          td = link_to book.title, book_path(book)
+          td = link_to book_path(book), class: 'is-size-5' do
+            = book.title
+            span.photo-count.ml-4 = book.photos.count
+
           td = last_update_of_photo(book)
           td = l(book.read_histories.last.read_back_at, format: :date) if book.read_histories.present?
 - else
