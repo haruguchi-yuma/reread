@@ -7,10 +7,10 @@
       - if flash.notice && current_page?(root_path)
         .notification.m-0.has-background-primary.has-text-white.has-text-centered
           = flash.notice
-    .welcome-item.px-6.pt-5
+    .welcome-item.has-background-ecru.px-6.pt-5
       p
         | 「また後で読み返そう」そう思って忘れてしまっている本はありませんか？
-    .welcome-item.px-6.py-6
+    .welcome-item.px-6.py-6.has-background-ecru
       h2.is-size-4.has-text-weight-bold.mb-4 このアプリの特徴
       .welcome-item-container.is-flex.is-justify-content-space-around
         .welcome-item-container-description.mr-2
@@ -26,7 +26,7 @@
           = image_tag '/demo1.png', class: 'demo-image'
       .has-text-centered.mt-6
         = link_to 'Googleでログイン', '/auth/google_oauth2', class: 'button is-info', method: :post
-    .welcome-item.p-6.has-background-ecru
+    .welcome-item.p-6
       h2.is-size-4.has-text-weight-bold.mb-6 技術書は難しいだからこそ何度も読み返す必要がある！
       .image-container.is-flex.is-justify-content-space-around
         .image-item
