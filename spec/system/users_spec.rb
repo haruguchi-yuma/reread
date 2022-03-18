@@ -21,7 +21,7 @@ RSpec.describe 'Users', type: :system do
         sign_in_as user
         click_on 'ログアウト'
         expect(page).to have_content 'ログアウトしました'
-        expect(page).to have_content 'Welcome'
+        expect(page).to have_content '「また後で読み返そう」そう思って忘れてしまっている本はありませんか？'
       end
     end
   end
