@@ -1,2 +1,50 @@
-h1 Welcome#index
-p Find me in app/views/welcome/index.html.slim
+- content_for(:html_title) { 're:Read - 技術書を読み返すための読書管理アプリ' }
+.welcome
+  .welcome-items
+    .welcome-item.has-background-primary
+      .welcome-item-container
+        h1.welcome-title
+          = image_tag '/title-logo.png'
+        - if flash.notice && current_page?(root_path)
+          .notification.m-0.has-background-primary.has-text-white.has-text-centered
+            = flash.notice
+    .welcome-item.has-background-ecru.px-6.pt-5
+      .welcome-item-container
+        p
+          | 「また後で読み返そう」そう思って忘れてしまっている本はありませんか？
+    .welcome-item.px-6.py-6.has-background-ecru
+      .welcome-item-container
+        h2.is-size-4.has-text-weight-bold.mb-4 このアプリの特徴
+        .is-flex.is-justify-content-space-around
+          .welcome-item-container-description.mr-2
+            .content
+              ul
+                li
+                  | 書籍の内容を写真に撮って読書管理
+                li
+                  | 写真にはメモを残せる
+                li
+                  | 読み返す日はGoogleカレンダーに設定
+          .welcome-item-container-image
+            = image_tag '/demo1.png', class: 'demo-image'
+        .has-text-centered.mt-6
+          = link_to 'Googleでログイン', '/auth/google_oauth2', class: 'button', method: :post
+    .welcome-item.p-6
+      .welcome-item-container
+        h2.is-size-4.has-text-weight-bold.mb-6 技術書は難しいだからこそ何度も読み返す必要がある！
+        .image-container.is-flex.is-justify-content-space-around
+          .image-item
+            p.is-size-5.mb-3
+              span.mr-3 1
+              | 何度も読み返す
+            = image_tag '/book_hon_no_mushi_man_bug.png'
+          .image-item
+            p.is-size-5.mb-3
+              span.mr-3 2
+              | 新しい発見
+            = image_tag '/hirameki_man.png'
+          .image-item.mb-3
+            p.is-size-5
+              span.mr-3 3
+              | 本当に理解・習得する
+            = image_tag '/slump_good_man_study.png'

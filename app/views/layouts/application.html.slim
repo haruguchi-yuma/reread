@@ -11,10 +11,11 @@ html
     = stylesheet_pack_tag 'application', media: 'all'
     = javascript_pack_tag 'application'
   body
-    header
-      = render 'shared/header'
-    main.px-6.pt-3
-      - if flash.notice
+    - unless current_page?(root_path)
+      header
+        = render 'shared/header'
+    main class= "#{current_page?(root_path) ? '' : 'px-6 pt-3'}"
+      - if flash.notice && !current_page?(root_path)
         .notification.is-success.is-light
           = flash.notice
       - if flash.alert

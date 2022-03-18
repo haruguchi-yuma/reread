@@ -18,7 +18,7 @@ RSpec.describe 'Retirements', type: :system do
         end.to change { User.count }.by(-1)
 
         expect(current_path).to eq root_path
-        expect(page).to have_content 'Welcome'
+        expect(page).to have_content '「また後で読み返そう」そう思って忘れてしまっている本はありませんか？'
       end
     end
 
@@ -27,7 +27,7 @@ RSpec.describe 'Retirements', type: :system do
         visit new_retirement_path
 
         expect(current_path).to eq root_path
-        expect(page).to have_content 'Welcome'
+        expect(page).to have_content '「また後で読み返そう」そう思って忘れてしまっている本はありませんか？'
       end
     end
   end
