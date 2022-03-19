@@ -5,7 +5,7 @@
     h1.title.is-3 = @book.title
     = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive'
   .div
-    = link_to new_book_photos_path(@book), class: 'button is-warning is-rounded' do
+    = link_to new_book_photo_path(@book), class: 'button is-warning is-rounded' do
       span.icon.mr-1
         i.fas.fa-camera
       = '写真投稿'
@@ -39,7 +39,7 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
       .is-size-1
         i.far.fa-sad-tear
       .div
-        = link_to new_book_photos_path(@book), class: 'button is-warning is-rounded' do
+        = link_to new_book_photo_path(@book), class: 'button is-warning is-rounded' do
           span.icon.mr-1
             i.fas.fa-camera
           = '写真投稿'

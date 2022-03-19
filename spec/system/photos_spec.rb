@@ -57,7 +57,7 @@ RSpec.describe 'Photos', type: :system do
   describe '投稿機能' do
     before do
       sign_in_as user_a
-      visit new_book_photos_path(book)
+      visit new_book_photo_path(book)
     end
 
     context 'ファイルを選択したとき' do
