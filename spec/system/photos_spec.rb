@@ -112,4 +112,31 @@ RSpec.describe 'Photos', type: :system do
       end
     end
   end
+
+  describe '編集機能' do
+    let!(:photo) { FactoryBot.create(:photo, note: 'メモの編集テスト', book: book) }
+
+    context '自分が投稿した写真のメモ' do
+      it '編集できる' do
+        sign_in_as user_a
+        visit book_photo_path(photo.book, photo)
+
+        expect do
+          fill_in 'メモ', with: 'メモを編集してみた'
+          click_on '更新する'
+
+          expect(page).to have_content 'メモを更新しました'
+          expect(page).to have_content 'メモを編集してみた'
+        end.to change(Photo, :count).by(0)
+      end
+
+      it '他のユーザは編集できない', js: true do
+        sign_in_as user_b
+        visit book_photo_path(photo.book, photo)
+
+        expect(page).not_to have_content 'メモの編集テスト'
+        expect(current_path).to eq books_path
+      end
+    end
+  end
 end
