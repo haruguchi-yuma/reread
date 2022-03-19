@@ -14,6 +14,19 @@ class PhotosController < ApplicationController
     end
   end
 
+  def show
+    @photo = Photo.find(params[:id])
+  end
+
+  def update
+    @photo = Photo.find(params[:id])
+    if @photo.update(photo_params)
+      redirect_to book_path(@photo.book)
+    else
+      render :show
+    end
+  end
+
   private
 
   def photo_params

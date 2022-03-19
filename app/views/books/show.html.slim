@@ -28,7 +28,8 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
     - @photos.each do |photo|
       .photo-section.is-flex.is-flex-direction-column.m-3
         - if photo.image
-          = image_tag photo.image[:medium].url, class: "image-#{photo.id}"
+          = link_to book_photo_path(photo.book, photo) do
+            = image_tag photo.image[:medium].url, class: "image-#{photo.id}"
         - if photo.note?
           .note.p-2.my-2
             = photo.note
