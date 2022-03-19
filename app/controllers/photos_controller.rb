@@ -38,7 +38,7 @@ class PhotosController < ApplicationController
   end
 
   def correct_user
-    return  if current_user == @photo.book.user
+    return if current_user == @photo.book.user
 
     redirect_to books_url
   end
