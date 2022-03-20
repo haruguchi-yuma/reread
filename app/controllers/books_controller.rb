@@ -2,7 +2,8 @@
 
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
-  before_action :allow_only_book_pages_from_your_own_book, only: %i[show edit update destroy]
+  before_action :correct_user, only: %i[show edit update destroy]
+
   def index
     @book = current_user.books.new
     @books = current_user.books.order(created_at: :desc).page(params[:page])
@@ -48,7 +49,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
   end
 
-  def allow_only_book_pages_from_your_own_book
+  def correct_user
     return if current_user == @book.user
 
     redirect_to books_url
