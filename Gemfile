@@ -72,3 +72,4 @@ gem 'shrine'
 gem 'shrine-cloudinary'
 gem 'slim-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+gem 'meta-tags'
