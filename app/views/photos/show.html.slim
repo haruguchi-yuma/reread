@@ -1,6 +1,7 @@
 - content_for(:html_title) { "写真詳細(#{@photo.book.title})" }
 
-h1.title.is-3 写真の詳細画面
+h1.title.is-3
+  = "写真の詳細画面(#{@photo.book.title})"
 
 .columns.is-flex
   .column.is-7
