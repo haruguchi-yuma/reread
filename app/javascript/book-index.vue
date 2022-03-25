@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div v-if="this.books.length == 0" class="blank-page has-text-centered has-text-grey" >
-      <div class="o-empty-message__text">
-          書籍はまだありません
-      </div>
+    <div
+      v-if="this.books.length == 0"
+      class="blank-page has-text-centered has-text-grey"
+    >
+      <div class="o-empty-message__text">書籍はまだありません</div>
       <div class="is-size-1">
         <i class="far fa-sad-tear"></i>
       </div>
@@ -22,7 +23,9 @@
             <td class="is-size-5">
               <a :href="book.url" class="is-block">
                 {{ book.title }}
-                <span class="photo-count ml-4">{{ book.number_of_photos }}</span>
+                <span class="photo-count ml-4">{{
+                  book.number_of_photos
+                }}</span>
               </a>
             </td>
             <td>
@@ -41,7 +44,6 @@
 <script>
 import axios from 'axios'
 
-
 export default {
   data() {
     return {
@@ -52,7 +54,7 @@ export default {
     setBook() {
       axios
         .get('/api/books')
-        .then(response => this.books = response.data.books)
+        .then((response) => (this.books = response.data.books))
     }
   },
   mounted() {
