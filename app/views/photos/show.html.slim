@@ -1,9 +1,9 @@
 - content_for(:html_title) { "写真詳細(#{@photo.book.title})" }
 
-h1.title.is-3
+h1.is-size-3-tablet
   = "写真の詳細画面(#{@photo.book.title})"
 
-.columns.is-flex
+.columns
   .column.is-7
     - if @photo.image
       = image_tag @photo.image[:large].url, class: "image-#{@photo.id}"
