@@ -10,7 +10,7 @@ RSpec.describe 'Books', type: :system do
     let!(:book) { FactoryBot.create(:book, title: '最初の書籍', user: user_a) }
 
     context 'ユーザーAがログインしているとき' do
-      it '登録した書籍が表示される' do
+      it '登録した書籍が表示される', js: true do
         sign_in_as user_a
         expect(page).to have_content '最初の書籍'
       end
@@ -27,7 +27,7 @@ RSpec.describe 'Books', type: :system do
 
   describe '登録機能' do
     context '書籍名を入力したとき' do
-      it '登録される' do
+      it '登録される', js: true do
         sign_in_as user_a
         expect do
           fill_in '書籍名', with: '最初の書籍'
