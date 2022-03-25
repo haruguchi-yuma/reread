@@ -1,6 +1,6 @@
 - content_for(:html_title) { '書籍名の編集' }
 
-h1.title.is-3 = @book.title
+h1.is-size-3.is-size-5-mobile = @book.title
 
 = render 'form', book: @book
 = link_to '戻る', book_path(@book)

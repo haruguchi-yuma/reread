@@ -2,8 +2,8 @@
 
 .book-info.is-flex.is-justify-content-space-between.is-align-items-center.py-2
   .book-title.is-flex.is-align-items-center
-    h1.title.is-3 = @book.title
-    = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive'
+    h1.is-size-3-tablet.is-size-5-mobile = @book.title
+    = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive ml-3'
   .div
     = link_to new_book_photo_path(@book), class: 'button is-warning is-rounded' do
       span.icon.mr-1
