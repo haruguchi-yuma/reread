@@ -18,20 +18,22 @@
         .is-flex.is-justify-content-space-around
           .welcome-item-container-description.mr-2
             .content
-              ul
-                li
-                  | 書籍の内容を写真に撮って読書管理
-                li
-                  | 写真にはメモを残せる
-                li
-                  | 読み返す日はGoogleカレンダーに設定
+              p.is-size-5
+                span.mr-3 1
+                | 書籍の内容を写真に撮って読書管理
+              p.is-size-5
+                span.mr-3 2
+                | 写真にはメモを残せる
+              p.is-size-5
+                span.mr-3 3
+                | 読み返す日はGoogleカレンダーに設定
           .welcome-item-container-image
             = image_tag '/demo1.png', class: 'demo-image'
         .has-text-centered.mt-6
           = link_to 'Googleでログイン', '/auth/google_oauth2', class: 'button', method: :post
     .welcome-item.p-6
       .welcome-item-container
-        h2.is-size-4.has-text-weight-bold.mb-6 技術書は難しいだからこそ何度も読み返す必要がある！
+        h2.is-size-4.has-text-weight-bold.mb-6 技術書は難しい！だからこそ何度も読み返す必要がある
         .image-container.is-flex.is-justify-content-space-around
           .image-item
             p.is-size-5.mb-3
