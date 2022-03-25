@@ -12,8 +12,6 @@ RSpec.describe 'Users', type: :system do
         expect(page).to have_content 'ログインしました'
         expect(page).to have_content '書籍の一覧'
       end
-
-      it 'ログイン失敗'
     end
 
     context 'ログアウト処理' do
