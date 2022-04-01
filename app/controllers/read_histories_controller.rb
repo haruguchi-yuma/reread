@@ -1,17 +1,6 @@
 # frozen_string_literal: true
 
-# require "google/apis/calendar_v3"
-# require "googleauth"
-# require "googleauth/stores/file_token_store"
-# require "date"
-# require "fileutils"
-
 class ReadHistoriesController < ApplicationController
-  # REDIRECT_URI = "http://localhost:3000/oauth2callback".freeze
-  # APPLICATION_NAME = "reRead(テスト)".freeze
-  # TOKEN_PATH = "token.yaml".freeze
-  # SCOPE = Google::Apis::CalendarV3::AUTH_CALENDAR
-
   def new
     @read_history = Book.find(params[:book_id]).read_histories.new
   end
