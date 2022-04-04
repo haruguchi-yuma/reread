@@ -8,4 +8,5 @@ class Book < ApplicationRecord
   paginates_per 10
 
   validates :title, length: { maximum: 50 }, presence: true
+  validates :user, presence: true
 end
