@@ -63,8 +63,8 @@ RSpec.describe 'Photos', type: :system do
     context 'ファイルを選択したとき' do
       it '投稿できる' do
         expect do
-          attach_file '写真', "#{Rails.root}/spec/factories/test_640x320.png"
-          fill_in 'メモ', with: 'これはメモです'
+          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          fill_in 'photo[note]', with: 'これはメモです'
           click_on '投稿する'
         end.to change(book.photos, :count).by(1)
 
@@ -75,7 +75,7 @@ RSpec.describe 'Photos', type: :system do
     context 'ファイルを選択しなかったとき' do
       it 'エラーになる' do
         expect do
-          fill_in 'メモ', with: 'これはメモです'
+          fill_in 'photo[note]', with: 'これはメモです'
           click_on '投稿する'
         end.to change(book.photos, :count).by(0)
 
@@ -88,8 +88,8 @@ RSpec.describe 'Photos', type: :system do
     context 'メモを入力したとき' do
       it '投稿できる' do
         expect do
-          attach_file '写真', "#{Rails.root}/spec/factories/test_640x320.png"
-          fill_in 'メモ', with: 'これはメモです'
+          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          fill_in 'photo[note]', with: 'これはメモです'
           click_on '投稿する'
         end.to change(book.photos, :count).by(1)
 
@@ -101,8 +101,8 @@ RSpec.describe 'Photos', type: :system do
     context 'メモに140字より多い文字数を入力したとき' do
       it '投稿できない' do
         expect do
-          attach_file '写真', "#{Rails.root}/spec/factories/test_640x320.png"
-          fill_in 'メモ', with: 'a' * 141
+          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          fill_in 'photo[note]', with: 'a' * 141
           click_on '投稿する'
         end.to change(book.photos, :count).by(0)
 
@@ -122,7 +122,7 @@ RSpec.describe 'Photos', type: :system do
         visit book_photo_path(photo.book, photo)
 
         expect do
-          fill_in 'メモ', with: 'メモを編集してみた'
+          fill_in 'photo[note]', with: 'メモを編集してみた'
           click_on '更新する'
 
           expect(page).to have_content 'メモを更新しました'

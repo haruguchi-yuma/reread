@@ -30,7 +30,7 @@ RSpec.describe 'Books', type: :system do
       it '登録される' do
         sign_in_as user_a
         expect do
-          fill_in '書籍名', with: '最初の書籍'
+          fill_in 'book[title]', with: '最初の書籍'
           click_button '登録する'
         end.to change(user_a.books, :count).by(1)
 
@@ -43,7 +43,7 @@ RSpec.describe 'Books', type: :system do
       it 'エラーになる' do
         sign_in_as user_a
         expect do
-          fill_in '書籍名', with: ''
+          fill_in 'book[title]', with: ''
           click_button '登録する'
         end.to change(user_a.books, :count).by(0)
 
@@ -113,7 +113,7 @@ RSpec.describe 'Books', type: :system do
         visit edit_book_path(book)
 
         expect do
-          fill_in '書籍名', with: '変更した書籍'
+          fill_in 'book[title]', with: '変更した書籍'
           click_button '更新する'
         end.to change(user_a.books, :count).by(0)
 
@@ -126,7 +126,7 @@ RSpec.describe 'Books', type: :system do
         visit edit_book_path(book)
 
         expect do
-          fill_in '書籍名', with: ''
+          fill_in 'book[title]', with: ''
           click_button '更新する'
         end.to change(user_a.books, :count).by(0)
 
