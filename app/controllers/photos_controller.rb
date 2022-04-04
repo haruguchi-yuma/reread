@@ -2,14 +2,13 @@
 
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[show update]
-  before_action :correct_user, only: %i[show update]
 
   def new
-    @photo = Book.find(params[:book_id]).photos.new
+    @photo = current_user.books.find(params[:book_id]).photos.new
   end
 
   def create
-    @photo = Book.find(params[:book_id]).photos.new(photo_params)
+    @photo = current_user.books.find(params[:book_id]).photos.new(photo_params)
     if @photo.save
       redirect_to book_url(@photo.book), notice: '写真を投稿しました'
     else
@@ -34,12 +33,6 @@ class PhotosController < ApplicationController
   end
 
   def set_photo
-    @photo = Photo.find(params[:id])
-  end
-
-  def correct_user
-    return if current_user == @photo.book.user
-
-    redirect_to books_url
+    @photo = current_user.books.find(params[:book_id]).photos.find(params[:id])
   end
 end
