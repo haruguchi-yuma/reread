@@ -2,7 +2,6 @@
 
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy]
-  before_action :correct_user, only: %i[show edit update destroy]
 
   def index
     @book = current_user.books.new
@@ -46,12 +45,6 @@ class BooksController < ApplicationController
   end
 
   def set_book
-    @book = Book.find(params[:id])
-  end
-
-  def correct_user
-    return if current_user == @book.user
-
-    redirect_to books_url
+    @book = current_user.books.find(params[:id])
   end
 end

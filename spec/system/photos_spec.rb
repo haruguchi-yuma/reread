@@ -34,24 +34,6 @@ RSpec.describe 'Photos', type: :system do
         expect(page).to have_selector '.photo-count', text: '1枚'
       end
     end
-
-    context 'ユーザーBがログインしているとき' do
-      it 'ユーザーAが投稿した写真は表示されない' do
-        sign_in_as user_b
-        visit book_path(book)
-
-        expect(page).not_to have_selector ".image-#{photo.id}"
-        expect(current_path).to eq books_path
-      end
-
-      it 'ユーザーAが投稿した写真のメモは表示されない' do
-        sign_in_as user_b
-        visit book_path(book)
-
-        expect(page).not_to have_content 'メモの内容です'
-        expect(current_path).to eq books_path
-      end
-    end
   end
 
   describe '投稿機能' do
@@ -128,14 +110,6 @@ RSpec.describe 'Photos', type: :system do
           expect(page).to have_content 'メモを更新しました'
           expect(page).to have_content 'メモを編集してみた'
         end.to change(Photo, :count).by(0)
-      end
-
-      it '他のユーザは編集できない', js: true do
-        sign_in_as user_b
-        visit book_photo_path(photo.book, photo)
-
-        expect(page).not_to have_content 'メモの編集テスト'
-        expect(current_path).to eq books_path
       end
     end
   end
