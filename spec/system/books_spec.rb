@@ -68,14 +68,6 @@ RSpec.describe 'Books', type: :system do
           expect(page).to have_content '「最初の書籍」を削除しました'
         end.to change(user_a.books, :count).by(-1)
       end
-
-      it 'ユーザーBは削除できない' do
-        sign_in_as user_b
-        visit book_path(book)
-
-        expect(page).not_to have_link 'この書籍を削除する'
-        expect(current_path).to eq books_path
-      end
     end
 
     context '写真が投稿されているとき' do
@@ -92,14 +84,6 @@ RSpec.describe 'Books', type: :system do
           expect(page.accept_confirm).to eq '投稿した写真も削除されます。よろしいですか？'
           expect(page).to have_content '「最初の書籍」を削除しました'
         end.to change(user_a.books, :count).by(-1)
-      end
-
-      it 'ユーザーBは削除できない' do
-        sign_in_as user_b
-        visit book_path(book)
-
-        expect(page).not_to have_link 'この書籍を削除する'
-        expect(current_path).to eq books_path
       end
     end
   end
@@ -133,14 +117,6 @@ RSpec.describe 'Books', type: :system do
         within '#error_explanation' do
           expect(page).to have_content '書籍名を入力してください'
         end
-      end
-
-      it 'ユーザーBは編集できない' do
-        sign_in_as user_b
-        visit edit_book_path(book)
-
-        expect(page).not_to have_button '更新する'
-        expect(current_path).to eq books_path
       end
     end
   end
