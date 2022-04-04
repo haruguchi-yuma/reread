@@ -4,7 +4,7 @@ class ReadHistory < ApplicationRecord
   belongs_to :book
   validates :summary, length: { maximum: 50 }, presence: true
   validates :description, length: { maximum: 300 }
-  validates :read_back_at, presence: true
+  validates :read_back_at, :book, presence: true
   validate :date_to_read_back_should_be_after_today
 
   private
