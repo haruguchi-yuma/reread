@@ -43,6 +43,15 @@ RSpec.describe 'Photos', type: :system do
     end
 
     context 'ファイルを選択したとき' do
+      it 'プレビュー画像が表示される', js: true do
+        expect(page).not_to have_selector 'img.new-img'
+
+        expect do
+          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          expect(page).to have_selector 'img.new-img'
+        end.to change(book.photos, :count).by(0)
+      end
+
       it '投稿できる' do
         expect do
           attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"

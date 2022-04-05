@@ -9,7 +9,7 @@
       = f.label :image, class: 'file-label'
       = image_tag f.object.image_url if f.object.cached_image_data
       = f.hidden_field :image, value: f.object.cached_image_data, id: 'photo-image'
-      = f.file_field :image, class: 'file'
+      = f.file_field :image, class: 'file', id: 'photo_image'
       #new-image.my-2
   .field
     .control
