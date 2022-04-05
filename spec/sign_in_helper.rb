@@ -17,7 +17,7 @@ module SignInHelper
     visit root_path
     ensure_browser_size if Capybara.current_driver == :selenium_chrome_headless
 
-    click_on 'login_button'
+    click_on '本を登録して利用する'
     @current_user = user
   end
 
