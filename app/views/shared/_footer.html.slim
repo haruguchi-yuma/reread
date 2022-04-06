@@ -1,10 +1,10 @@
 .has-text-centered
   = link_to 'https://github.com/haruguchi-yuma/reread', class: 'mx-3' do
-    i.fab.fa-github
+    i.fab.fa-github.is-size-5
   = link_to 'https://twitter.com/haruguchiyuma', class: 'mx-3' do
-    i.fab.fa-twitter
+    i.fab.fa-twitter.is-size-5
   = link_to '利用規約', tos_path, class: 'mx-3'
   = link_to 'プライバシーポリシー', privacy_policy_path, class: 'mx-3'
-  div
+  .py-4.has-text-grey
     - time = Time.current.year
     =  "2022 #{time == 2022 ? '' : "- #{time}"} ©️haruguchi"
