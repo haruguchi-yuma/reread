@@ -11,7 +11,7 @@ class CalendarClient
       token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
       access_token: Rails.cache.read(user.uid),
       refresh_token: Rails.cache.read(user.uid + user.id.to_s),
-      expires_at: Rails.cache.read('expires_at')
+      expires_at: Rails.cache.read("#{user.uid}expires_at")
     )
   end
 
@@ -41,6 +41,7 @@ class CalendarClient
     return unless @client.expired?
 
     @client.refresh!
+    Rails.cache.write("#{@user.uid}expires_at", @client.expires_at)
     Rails.cache.fetch(@user.uid, expires_in: @client.expires_at) do
       @client.access_token
     end
