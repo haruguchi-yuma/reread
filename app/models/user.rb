@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   def store_credentials_in_cache(auth_hash)
     expires_at = auth_hash.credentials.expires_at
-    Rails.cache.write('expires_at', expires_at)
+    Rails.cache.write(uid + 'expires_at', expires_at)
     Rails.cache.fetch(uid, expires_in: expires_at) do
       auth_hash.credentials.token
     end
