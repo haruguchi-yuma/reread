@@ -7,6 +7,7 @@ class CalendarClient
     @client = Signet::OAuth2::Client.new(
       client_id: ENV['GOOGLE_CLIENT_ID'],
       client_secret: ENV['GOOGLE_CLIENT_SECRET'],
+      authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
       token_credential_uri: 'https://accounts.google.com/o/oauth2/token',
       access_token: Rails.cache.read(user.uid),
       refresh_token: Rails.cache.read(user.uid + user.id.to_s),
@@ -41,8 +42,6 @@ class CalendarClient
 
     @client.refresh!
     Rails.cache.write("#{@user.uid}expires_at", @client.expires_at)
-    Rails.cache.fetch(@user.uid, expires_in: @client.expires_at) do
-      @client.access_token
-    end
+    Rails.cache.write(@user.uid, @client.access_token)
   end
 end
