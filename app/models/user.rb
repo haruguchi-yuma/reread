@@ -18,5 +18,10 @@ class User < ApplicationRecord
     Rails.cache.write("#{uid}expires_at", expires_at)
     Rails.cache.write(uid, auth_hash.credentials.token)
     Rails.cache.write(uid + id.to_s, auth_hash.credentials.refresh_token)
+    p '*' * 30 + 'ログイン時' + '*' * 30
+    p 'アクセストークン'
+    pp Rails.cache.read(uid)
+    p 'リフレッシュトークン'
+    pp Rails.cache.read(uid + id.to_s)
   end
 end

@@ -41,8 +41,13 @@ class CalendarClient
 
   def refresh!
     return unless @client.expired?
-
+    p '*' * 30 + 'リフレッシュ前' + '*' * 30
+    p "アクセストークン"
+    pp Rails.cache.read(@user.uid)
+    p 'リフレッシュトークン'
+    pp Rails.cache.read(@user.uid + @user.id.to_s)
     @client.refresh!
+    p "リフレッシュ完了"
     Rails.cache.write("#{@user.uid}expires_at", @client.expires_at)
     Rails.cache.write(@user.uid, @client.access_token)
   end
