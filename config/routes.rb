@@ -14,4 +14,8 @@ Rails.application.routes.draw do
     resources :photos, only: %i(new create show update)
     resource :read_histories, only: %i(new create)
   end
+
+  namespace :api, format: 'json' do
+    resources :books, only: %i(index)
+  end
 end

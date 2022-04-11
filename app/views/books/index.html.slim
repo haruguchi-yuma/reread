@@ -6,26 +6,4 @@ h1.title.is-3 書籍の一覧
 
 hr
 .mb-3
-  = paginate @books
-- if @books.present?
-  table.table.is-fullwidth
-    thead
-      tr
-        th = Book.human_attribute_name(:title)
-        th = Photo.human_attribute_name(:updated_at)
-        th = ReadHistory.human_attribute_name(:read_back_at)
-    tbody
-      - @books.each do |book|
-        tr
-          td = link_to book_path(book), class: 'is-size-5' do
-            = book.title
-            span.photo-count.ml-4 = book.photos.count
-
-          td = last_update_of_photo(book)
-          td = l(book.read_histories.last.read_back_at, format: :date) if book.read_histories.present?
-- else
-  .blank-page.has-text-centered.has-text-grey
-      .o-empty-message__text
-        | 書籍はまだありません
-      .is-size-1
-        i.far.fa-sad-tear
+  #js-books

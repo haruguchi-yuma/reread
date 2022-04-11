@@ -9,5 +9,7 @@ import * as ActiveStorage from '@rails/activestorage'
 require('../src/header')
 require('./preview')
 
+import '../books.js'
+
 Rails.start()
 ActiveStorage.start()
