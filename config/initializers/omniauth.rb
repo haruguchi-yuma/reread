@@ -10,7 +10,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       Rails.application.credentials.google[:client_id],
       Rails.application.credentials.google[:client_secret],
       {
-      scope: 'userinfo.email, userinfo.profile, https://www.googleapis.com/auth/calendar.events',prompt: 'select_account'
+        scope: 'userinfo.email, userinfo.profile, https://www.googleapis.com/auth/calendar.events',
+        prompt: 'consent'
       }
   end
 end
