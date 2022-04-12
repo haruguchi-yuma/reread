@@ -1,12 +1,12 @@
 nav.navbar.is-primary
-  .navbar-brand
+  .navbar-brand.ml-4
     = link_to image_tag('/header-logo.png'), root_path, class: 'logo-title'
     .navbar-burger[data-target="navbarExampleTransparentExample"]
         span
         span
         span
   #navbarExampleTransparentExample.navbar-menu
-    .navbar-end
+    .navbar-end.mr-4
       - if logged_in?
         = image_tag @current_user.image_url, class: 'image is-32x32 my-auto'
         = link_to 'ログアウト', logout_path, class: 'navbar-item header-link', method: :delete
