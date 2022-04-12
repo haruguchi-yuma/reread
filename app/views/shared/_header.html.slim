@@ -1,15 +1,18 @@
 nav.navbar.is-primary
-  .navbar-brand
-    = link_to image_tag('/header-logo.png'), root_path, class: 'logo-title'
+  .navbar-brand.ml-4
+    = link_to image_tag('/header-logo.png'), root_path, class: 'logo-title my-auto'
     .navbar-burger[data-target="navbarExampleTransparentExample"]
         span
         span
         span
-  #navbarExampleTransparentExample.navbar-menu
+  #navbarExampleTransparentExample.navbar-menu.mr-4
     .navbar-end
       - if logged_in?
-        = image_tag @current_user.image_url, class: 'image is-32x32 my-auto'
-        = link_to 'ログアウト', logout_path, class: 'navbar-item header-link', method: :delete
-        = link_to 'アカウント削除', new_retirement_path, class: 'navbar-item header-link'
+        .navbar-item.has-dropdown.is-hoverable
+          .navbar-link
+            = image_tag @current_user.image_url, class: 'image is-32x32 my-auto'
+          .navbar-dropdown
+            = link_to 'ログアウト', logout_path, class: 'navbar-item header-link', method: :delete
+            = link_to 'アカウント削除', new_retirement_path, class: 'navbar-item header-link'
       - else
         = link_to 'Googleでログイン', '/auth/google_oauth2', class: 'navbar-item', method: :post
