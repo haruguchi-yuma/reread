@@ -1,5 +1,5 @@
 if (document.URL.match(/books\/\d+\/photos\/new/)) {
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener('turbolinks:load', () => {
     const createImageHTML = (blob) => {
       const imageElement = document.getElementById('new-image')
       const blobImage = document.createElement('img')
