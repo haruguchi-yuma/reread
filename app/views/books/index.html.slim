@@ -1,11 +1,32 @@
 - content_for(:html_title) { '書籍の一覧' }
 
 .index-book.pt-4
-  h1.title.is-3 書籍の一覧
+  .columns.is-vcentered.py-4
+    h1.title.column.is-3 読み返したい本リスト
+    #show-modal.column.has-text-right
+      button.button.is-warning 読み返す本を登録する
 
-  = render 'form', book: @book
+  #modal-window.modal
+    #modal-background.modal-background
+    .modal-card
+      .modal-card-head
+        p.modal-card-title
+          | 読み返す本を登録する
+        button#close-modal.delete aria-label="close"
+      = form_with model: @book, remote: true do |f|
+        section.modal-card-body
+          .content
+            - if @book.errors.any?
+              #error_explanation.message.is-light
+                ul
+                  - @book.errors.full_messages.each do |message|
+                    li.message-body = message
+            = f.label :title, class: 'label'
+            = f.text_field :title, class: 'input'
+        footer.modal-card-foot.is-justify-content-flex-end
+          a#close-button.button = 'キャンセル'
+          = f.submit class: 'button is-warning'
 
-  hr
   .mb-3
     = paginate @books
   - if @books.present?

@@ -10,7 +10,7 @@ RSpec.describe 'Users', type: :system do
       it 'ログインできる' do
         sign_in_as user
         expect(page).to have_content 'ログインしました'
-        expect(page).to have_content '書籍の一覧'
+        expect(page).to have_content '読み返したい本リスト'
       end
     end
 

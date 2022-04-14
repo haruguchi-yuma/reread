@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('turbolinks:load', () => {
   const $navbarBurgers = Array.prototype.slice.call(
     document.querySelectorAll('.navbar-burger'),
     0

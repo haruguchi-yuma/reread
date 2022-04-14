@@ -9,8 +9,8 @@ html
     = csrf_meta_tags
     = csp_meta_tag
     = favicon_link_tag('/favicon.ico')
-    = stylesheet_pack_tag 'application', media: 'all'
-    = javascript_pack_tag 'application'
+    = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     meta[name="google-site-verification" content="QYfOertXvzw7TxkAk8ZuV4mHEvDYBqxSQx-HJuym034"]
   body
     - unless current_page?(root_path)
