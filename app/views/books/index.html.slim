@@ -3,15 +3,15 @@
 .index-book.pt-4
   h1.title.is-3 書籍の一覧
   #show-modal
-    button 読み返す本を登録する
+    button.button.is-warning 読み返す本を登録する
 
-  .modal.is-active
-    .modal-background
+  #modal-window.modal
+    #modal-background.modal-background
     .modal-card
       .modal-card-head
         p.modal-card-title
           | 読み返す本を登録する
-        button.delete aria-label="close"
+        button#close-modal.delete aria-label="close"
       = form_with model: @book, remote: true do |f|
         section.modal-card-body
           .content
@@ -23,7 +23,7 @@
             = f.label :title, class: 'label'
             = f.text_field :title, class: 'input'
         footer.modal-card-foot.is-justify-content-flex-end
-          a.button = 'キャンセル'
+          a#close-button.button = 'キャンセル'
           = f.submit class: 'button is-warning'
 
 
