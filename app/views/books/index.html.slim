@@ -1,9 +1,10 @@
 - content_for(:html_title) { '書籍の一覧' }
 
 .index-book.pt-4
-  h1.title.is-3 書籍の一覧
-  #show-modal
-    button.button.is-warning 読み返す本を登録する
+  .columns.is-vcentered
+    h1.title.column.is-3 読み返したい本リスト
+    #show-modal.column.has-text-right
+      button.button.is-warning 読み返す本を登録する
 
   #modal-window.modal
     #modal-background.modal-background
