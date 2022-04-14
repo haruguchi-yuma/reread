@@ -5,7 +5,6 @@ if (document.URL.match(/books\/?$/)) {
     $show.addEventListener('click', () => {
       const $modal = document.getElementById('modal-window')
       $modal.classList.add('is-active')
-
     })
 
     const $close = document.getElementById('close-modal')
@@ -28,6 +27,5 @@ if (document.URL.match(/books\/?$/)) {
       const $modal = document.getElementById('modal-window')
       $modal.classList.remove('is-active')
     })
-
   })
 }

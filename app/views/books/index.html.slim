@@ -1,7 +1,7 @@
 - content_for(:html_title) { '書籍の一覧' }
 
 .index-book.pt-4
-  .columns.is-vcentered
+  .columns.is-vcentered.py-4
     h1.title.column.is-3 読み返したい本リスト
     #show-modal.column.has-text-right
       button.button.is-warning 読み返す本を登録する
@@ -27,8 +27,6 @@
           a#close-button.button = 'キャンセル'
           = f.submit class: 'button is-warning'
 
-
-  hr
   .mb-3
     = paginate @books
   - if @books.present?
