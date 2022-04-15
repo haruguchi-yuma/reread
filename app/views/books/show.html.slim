@@ -45,7 +45,7 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
       data: { confirm: '投稿した写真も削除されます。よろしいですか？' }, class: 'button is-small'
   = link_to '戻る', books_path
 
-div.photo-post-button-section.has-text-right
+.photo-post-button-section.has-text-right
   = link_to new_book_photo_path(@book), class: 'button is-warning' do
     span.icon
       i.fa.fa-plus.is-size-3
