@@ -1,14 +1,9 @@
 - content_for(:html_title) { "投稿した写真(#{@book.title})" }
 
-.book-info.is-flex.is-justify-content-space-between.is-align-items-center.py-2
+.book-info.py-2
   .book-title.is-flex.is-align-items-center
     h1.is-size-3-tablet.is-size-5-mobile = @book.title
     = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive ml-3'
-  .div
-    = link_to new_book_photo_path(@book), class: 'button is-warning is-rounded' do
-      span.icon.mr-1
-        i.fas.fa-camera
-      = '写真投稿'
 
 .photo-info.is-flex.is-justify-content-space-between.is-align-items-center.py-2
   -  if @photos.present?
@@ -18,7 +13,7 @@
   .photo-count
     p = "写真の枚数: #{@photos.count}枚"
   .google-button.has-text-right
-    = link_to new_book_read_histories_path(@book), class: 'button is-info is-rounded' do
+    = link_to new_book_read_histories_path(@book), class: 'button is-info' do
       span.icon.mr-1
         i.fas.fa-calendar-alt
       = 'Googleカレンダーに読み返す日を設定する'
@@ -40,7 +35,7 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
       .is-size-1
         i.far.fa-sad-tear
       .div
-        = link_to new_book_photo_path(@book), class: 'button is-warning is-rounded' do
+        = link_to new_book_photo_path(@book), class: 'button is-warning' do
           span.icon.mr-1
             i.fas.fa-camera
           = '写真投稿'
@@ -49,3 +44,8 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
   = link_to 'この書籍を削除する', book_path(@book), method: :delete,
       data: { confirm: '投稿した写真も削除されます。よろしいですか？' }, class: 'button is-small'
   = link_to '戻る', books_path
+
+.photo-post-button-section.has-text-right
+  = link_to new_book_photo_path(@book), class: 'button is-warning' do
+    span.icon
+      i.fa.fa-plus.is-size-3
