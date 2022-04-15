@@ -5,7 +5,7 @@
     h1.is-size-3-tablet.is-size-5-mobile = @book.title
     = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive ml-3'
   .div
-    = link_to new_book_photo_path(@book), class: 'button is-warning is-rounded' do
+    = link_to new_book_photo_path(@book), class: 'button is-warning' do
       span.icon.mr-1
         i.fas.fa-camera
       = '写真投稿'
@@ -18,7 +18,7 @@
   .photo-count
     p = "写真の枚数: #{@photos.count}枚"
   .google-button.has-text-right
-    = link_to new_book_read_histories_path(@book), class: 'button is-info is-rounded' do
+    = link_to new_book_read_histories_path(@book), class: 'button is-info' do
       span.icon.mr-1
         i.fas.fa-calendar-alt
       = 'Googleカレンダーに読み返す日を設定する'
@@ -40,7 +40,7 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
       .is-size-1
         i.far.fa-sad-tear
       .div
-        = link_to new_book_photo_path(@book), class: 'button is-warning is-rounded' do
+        = link_to new_book_photo_path(@book), class: 'button is-warning' do
           span.icon.mr-1
             i.fas.fa-camera
           = '写真投稿'
