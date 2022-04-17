@@ -1,22 +1,21 @@
 - content_for(:html_title) { "投稿した写真(#{@book.title})" }
 
-.book-info.py-2
-  .book-title.is-flex.is-align-items-center
-    h1.is-size-3-tablet.is-size-5-mobile = @book.title
-    = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive ml-3'
-
-.photo-info.is-flex.is-justify-content-space-between.is-align-items-center.py-2
-  -  if @photos.present?
-    p = "投稿日: #{last_update_of_photo(@book)}"
-  - else
-    p = '投稿日: --------'
-  .photo-count
-    p = "写真の枚数: #{@photos.count}枚"
-  .google-button.has-text-right
-    = link_to new_book_read_histories_path(@book), class: 'button is-info' do
-      span.icon.mr-1
-        i.fas.fa-calendar-alt
-      = 'Googleカレンダーに読み返す日を設定する'
+.book-info.py-3
+  .book-info-section.columns.is-align-items-center
+    .book-title.column.is-flex.is-align-items-center
+      div
+        h1.is-size-3-tablet.is-size-5-mobile = @book.title
+        .photo-info.is-size-7
+          -  if @photos.present?
+            p = "最終更新日: #{last_update_of_photo(@book)}"
+          - else
+            p = '最終更新日: なし'
+      = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive ml-3'
+    .google-button.column.has-text-right
+      = link_to new_book_read_histories_path(@book), class: 'button is-info' do
+        span.icon.mr-1
+          i.fas.fa-calendar-alt
+        = 'Googleカレンダーに読み返す日を設定する'
 
 div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'is-justify-content-center' if @photos.blank?}"
   - if @photos.present?
