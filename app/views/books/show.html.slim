@@ -21,7 +21,7 @@
 div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'is-justify-content-center' if @photos.blank?}"
   - if @photos.present?
     - @photos.each do |photo|
-      .photo-section.is-flex.has-background-white-ter.is-flex-direction-column.m-3
+      .photo-section.is-flex.has-background-white-ter.is-flex-direction-column.mt-3.mr-5.mb-3
         - if photo.image
           = link_to book_photo_path(photo.book, photo) do
             = image_tag photo.image[:original].url, class: "image-#{photo.id}"
