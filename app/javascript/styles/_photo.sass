@@ -1,37 +1,44 @@
 @charset 'UTF-8'
 
-.book-info
-  border-bottom: 2px solid #eee
-  h1.title
-    margin: 0px 8px 0px 0px
-
-.photo-info
-  border-bottom: 2px solid #eee
-
-.photo-index p
-  margin-top: 100px
 
 #new-image img.new-img
   width: 400px
   height: 400px
   object-fit: cover
 
-.blank-page
-  margin: 100px 0
+.book-info
+  border-bottom: 2px solid #eee
 
-.photo-section
-  img
-    width: 100%
-  .note
-    border-radius: 10px
-    border: 2px solid #ccc
-    width: 400px
-    overflow-wrap: normal
+.photo-index
+  .photo-section
+    max-width: 500px
+    height: 540px
+    padding: 0 10px
+    img
+      max-width: 400px
+      height: 400px
+      object-fit: contain
+      display: block
+      margin: 10px auto
+    .note
+      overflow-wrap: normal
+      max-width: 400px
+      font-size: 14px
+      color: #0a0a0a
+  .blank-page
+    margin: 100px 0
 
 div.photo-post-button-section
   margin-top: 30px
   margin-bottom: 30px
+  // position: fixed
+  // top: 130px
+  // right: 20px
   .button
     width: 70px
     height: 70px
     border-radius: 50%
+
+.delete-button
+  a
+    text-decoration-line: underline
