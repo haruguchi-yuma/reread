@@ -11,6 +11,6 @@ Rails.application.routes.draw do
 
   resources :books, except: %i(new) do
     resources :photos, only: %i(new create show update)
-    resource :read_histories, only: %i(new create)
+    resources :read_histories, only: %i(new create)
   end
 end
