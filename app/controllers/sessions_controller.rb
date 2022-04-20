@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    Rails.cache.delete(current_user.uid + current_user.id.to_s)
+    current_user.delete_refresh_token_in_cache
     reset_session
     redirect_to root_path, notice: 'ログアウトしました'
   end
