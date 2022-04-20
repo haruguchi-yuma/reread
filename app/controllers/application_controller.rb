@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :authenticate
+  before_action :require_logged_in
   helper_method :logged_in?
 
   private
@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id])
   end
 
-  def authenticate
+  def require_logged_in
     return if logged_in?
 
     redirect_to root_path, alert: 'ログインしてください'
