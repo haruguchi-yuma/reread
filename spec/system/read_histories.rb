@@ -12,7 +12,7 @@ RSpec.describe 'ReadHistories', type: :system, js: true do
       allow_any_instance_of(CalendarClient).to receive(:create_event).and_return(calendar_client_mock)
 
       sign_in_as book.user
-      visit new_book_read_histories_path(book)
+      visit new_book_read_history_path(book)
     end
 
     context 'サマリーの入力' do

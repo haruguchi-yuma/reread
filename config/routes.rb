@@ -5,13 +5,12 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get 'auth/failure', to: redirect('/')
-  get "oauth2callback", to:"read_histories#callback"
   delete '/logout', to: 'sessions#destroy'
 
-  resource :retirement
+  resource :retirement, only: %i(new create)
 
   resources :books, except: %i(new) do
     resources :photos, only: %i(new create show update)
-    resource :read_histories, only: %i(new create)
+    resources :read_histories, only: %i(new create)
   end
 end

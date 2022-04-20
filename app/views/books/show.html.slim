@@ -12,7 +12,7 @@
             p = '最終更新日: なし'
       = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive ml-3'
     .google-button.column.has-text-right
-      = link_to new_book_read_histories_path(@book), class: 'button is-info' do
+      = link_to new_book_read_history_path(@book), class: 'button is-info' do
         span.icon.mr-1
           i.fas.fa-calendar-alt
         = 'Googleカレンダーに読み返す日を設定する'
