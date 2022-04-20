@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   delete '/logout', to: 'sessions#destroy'
 
-  resource :retirement
+  resource :retirement, only: %i(new create)
 
   resources :books, except: %i(new) do
     resources :photos, only: %i(new create show update)
