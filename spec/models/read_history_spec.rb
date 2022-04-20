@@ -20,14 +20,14 @@ RSpec.describe ReadHistory, type: :model do
   end
 
   it '読み返す日が設定されていなければ無効な状態であること' do
-    read_history = FactoryBot.build(:read_history, :without_read_back_at)
+    read_history = FactoryBot.build(:read_history, :without_read_back_on)
     read_history.valid?
-    expect(read_history.errors[:read_back_at]).to include('を入力してください')
+    expect(read_history.errors[:read_back_on]).to include('を入力してください')
   end
 
   it '読み返す日を今日の日付よりも前に設定した場合無効な状態であること' do
     read_history = FactoryBot.build(:read_history, :date_is_before_today)
     read_history.valid?
-    expect(read_history.errors[:read_back_at]).to include('は今日より後の日付に設定してください')
+    expect(read_history.errors[:read_back_on]).to include('は今日より後の日付に設定してください')
   end
 end

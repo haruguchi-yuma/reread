@@ -35,7 +35,7 @@
         tr
           th = Book.human_attribute_name(:title)
           th = Photo.human_attribute_name(:updated_at)
-          th = ReadHistory.human_attribute_name(:read_back_at)
+          th = ReadHistory.human_attribute_name(:read_back_on)
       tbody
         - @books.each do |book|
           tr
@@ -44,7 +44,7 @@
               span.photo-count.is-size-6.ml-4 = book.photos.count
 
             td.has-text-grey = last_update_of_photo(book)
-            td.has-text-grey = l(book.read_histories.last.read_back_at, format: :date) if book.read_histories.present?
+            td.has-text-grey = l(book.read_histories.last.read_back_on, format: :date) if book.read_histories.present?
   - else
     .blank-page.has-text-centered.has-text-grey
         .o-empty-message__text

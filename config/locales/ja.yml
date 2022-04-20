@@ -13,7 +13,7 @@ ja:
         updated_at: 投稿日
       read_history:
         summary: サマリー
-        read_back_at: 読み返す日
+        read_back_on: 読み返す日
         description: メモ
   time:
     formats:

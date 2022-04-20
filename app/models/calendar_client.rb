@@ -21,10 +21,10 @@ class CalendarClient
     event = Google::Apis::CalendarV3::Event.new(
       summary: read_history.summary,
       start: Google::Apis::CalendarV3::EventDateTime.new(
-        date: read_history.read_back_at
+        date: read_history.read_back_on
       ),
       end: Google::Apis::CalendarV3::EventDateTime.new(
-        date: read_history.read_back_at
+        date: read_history.read_back_on
       ),
       description: read_history.description
     )
