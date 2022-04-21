@@ -24,6 +24,6 @@ html
         .notification.is-danger.is-light
           = flash.alert
       = yield
-    - unless current_page?(book_path)
+    - unless @book.present? && Book.exists?(@book.id)
       footer.footer.is-size-7
         = render 'shared/footer'
