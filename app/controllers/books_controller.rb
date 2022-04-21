@@ -8,6 +8,12 @@ class BooksController < ApplicationController
     @books = current_user.books.order(created_at: :desc).page(params[:page])
   end
 
+  def show
+    @photos = @book.photos.order(created_at: :desc)
+  end
+
+  def edit; end
+
   def create
     @book = current_user.books.new(book_params)
     @books = current_user.books.order(created_at: :desc).page(params[:page])
@@ -18,12 +24,6 @@ class BooksController < ApplicationController
       render :index
     end
   end
-
-  def show
-    @photos = @book.photos.order(created_at: :desc)
-  end
-
-  def edit; end
 
   def update
     if @book.update(book_params)

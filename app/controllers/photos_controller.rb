@@ -3,6 +3,8 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[show update]
 
+  def show; end
+
   def new
     @photo = current_user.books.find(params[:book_id]).photos.new
   end
@@ -15,8 +17,6 @@ class PhotosController < ApplicationController
       render :new
     end
   end
-
-  def show; end
 
   def update
     if @photo.update(photo_params)
