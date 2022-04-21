@@ -7,7 +7,7 @@
         h1.is-size-3-tablet.is-size-5-mobile = @book.title
         .photo-info.is-size-7
           -  if @photos.present?
-            p = "最終更新日: #{last_update_of_photo(@book)}"
+            p = "最終更新日: #{@book.last_update_of_photo}"
           - else
             p = '最終更新日: なし'
       = link_to '編集', edit_book_path(@book), class: 'button is-small is-responsive ml-3'
