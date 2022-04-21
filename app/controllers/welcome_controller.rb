@@ -7,11 +7,7 @@ class WelcomeController < ApplicationController
     redirect_to books_path if logged_in?
   end
 
-  def tos
-    current_user
-  end
+  def tos; end
 
-  def privacy_policy
-    current_user
-  end
+  def privacy_policy; end
 end
