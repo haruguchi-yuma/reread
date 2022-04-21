@@ -43,7 +43,7 @@
               = book.title
               span.photo-count.is-size-6.ml-4 = book.photos.count
 
-            td.has-text-grey = last_update_of_photo(book)
+            td.has-text-grey = book.last_update_of_photo
             td.has-text-grey = l(book.read_histories.last.read_back_on, format: :date) if book.read_histories.present?
   - else
     .blank-page.has-text-centered.has-text-grey
