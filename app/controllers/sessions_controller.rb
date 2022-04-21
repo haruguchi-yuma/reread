@@ -5,11 +5,15 @@ class SessionsController < ApplicationController
 
   def create
     auth_hash = request.env['omniauth.auth']
-    user = User.find_or_create_from_auth_hash!(auth_hash)
-    self.current_user = user
 
-    user.store_credentials_in_cache(auth_hash)
-    redirect_to books_path, notice: 'ログインしました'
+    begin
+      user = User.find_or_create_from_auth_hash!(auth_hash)
+      self.current_user = user
+      user.store_credentials_in_cache(auth_hash)
+      redirect_to books_path, notice: 'ログインしました'
+    rescue StandardError
+      redirect_to root_path, notice: 'ログインに失敗しました'
+    end
   end
 
   def destroy
