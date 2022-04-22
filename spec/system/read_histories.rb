@@ -41,7 +41,7 @@ RSpec.describe 'ReadHistories', type: :system, js: true do
     end
 
     context '日付の入力' do
-      it '今日より後の日に設定したとき登録できる' do
+      it '今日より未来の日付を設定したとき登録できる' do
         expect do
           fill_in '読み返す日', with: I18n.l(Time.zone.today + 1.day, format: '00%Y-%m-%d')
           fill_in 'メモ', with: ''
@@ -50,7 +50,7 @@ RSpec.describe 'ReadHistories', type: :system, js: true do
 
         expect(page).to have_selector '.notification', text: '再読日を設定しました'
       end
-      it '今日または今日より前の日に設定したとき登録できない' do
+      it '今日または今日より過去の日付を設定したとき登録できない' do
         expect do
           fill_in '読み返す日', with: I18n.l(Time.zone.today - 1.day, format: '00%Y-%m-%d')
           fill_in 'メモ', with: ''
@@ -58,7 +58,7 @@ RSpec.describe 'ReadHistories', type: :system, js: true do
         end.to change(book.read_histories, :count).by(0)
 
         within '#error_explanation' do
-          expect(page).to have_content '読み返す日は今日より後の日付に設定してください'
+          expect(page).to have_content '読み返す日は今日より未来の日付を設定してください'
         end
       end
     end
