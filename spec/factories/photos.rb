@@ -11,7 +11,7 @@ FactoryBot.define do
     note { 'メモの内容です' }
     association :book
 
-    trait :within_file_size do
+    trait :with_small_jpeg do
       image do
         Rack::Test::UploadedFile.new(
           Rails.root.join('spec/factories/test_5MB.jpg'),
@@ -20,7 +20,7 @@ FactoryBot.define do
       end
     end
 
-    trait :over_file_size do
+    trait :with_large_jpeg do
       image do
         Rack::Test::UploadedFile.new(
           Rails.root.join('spec/factories/test_6MB.jpg'),
@@ -29,7 +29,7 @@ FactoryBot.define do
       end
     end
 
-    trait :pdf do
+    trait :with_pdf do
       image do
         Rack::Test::UploadedFile.new(
           Rails.root.join('spec/factories/test.pdf'),
