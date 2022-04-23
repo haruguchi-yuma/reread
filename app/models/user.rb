@@ -19,4 +19,8 @@ class User < ApplicationRecord
     Rails.cache.write(uid, auth_hash.credentials.token)
     Rails.cache.write(uid + id.to_s, auth_hash.credentials.refresh_token)
   end
+
+  def delete_refresh_token_in_cache
+    Rails.cache.delete(uid + id.to_s)
+  end
 end
