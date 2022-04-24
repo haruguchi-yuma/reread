@@ -13,6 +13,26 @@ RSpec.describe ReadHistory, type: :model do
     expect(read_history.errors[:summary]).to include('を入力してください')
   end
 
+  it 'サマリーが51文字以上であれば無効な状態であること' do
+    read_history = FactoryBot.build(:read_history, summary: 'a' * 50)
+    read_history.valid?
+    expect(read_history.errors[:summary]).not_to include('は50文字以内で入力してください')
+
+    long_summary_read_history = FactoryBot.build(:read_history, summary: 'a' * 51)
+    long_summary_read_history.valid?
+    expect(long_summary_read_history.errors[:summary]).to include('は50文字以内で入力してください')
+  end
+
+  it 'メモが301文字以上であれば無効な状態であること' do
+    read_history = FactoryBot.build(:read_history, description: 'a' * 300)
+    read_history.valid?
+    expect(read_history.errors[:description]).not_to include('は300文字以内で入力してください')
+
+    long_description_read_history = FactoryBot.build(:read_history, description: 'a' * 301)
+    long_description_read_history.valid?
+    expect(long_description_read_history.errors[:description]).to include('は300文字以内で入力してください')
+  end
+
   it '書籍がなければ無効な状態であること' do
     read_history = FactoryBot.build(:read_history, book: nil)
     read_history.valid?
