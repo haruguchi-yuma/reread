@@ -28,6 +28,7 @@ RSpec.describe 'Books', type: :system do
     context '書籍名を入力したとき' do
       it '登録される' do
         sign_in_as login_user
+        click_button '読み返す本を登録する'
         expect do
           fill_in 'book[title]', with: '最初の書籍'
           click_button '登録する'
@@ -41,11 +42,13 @@ RSpec.describe 'Books', type: :system do
     context '書籍名を入力しなかったとき' do
       it 'エラーになる' do
         sign_in_as login_user
+        click_button '読み返す本を登録する'
         expect do
           fill_in 'book[title]', with: ''
           click_button '登録する'
         end.to change(login_user.books, :count).by(0)
 
+        click_button '読み返す本を登録する'
         within '#error_explanation' do
           expect(page).to have_content '書籍名を入力してください'
         end
