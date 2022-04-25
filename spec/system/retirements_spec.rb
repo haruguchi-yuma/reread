@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Retirements', type: :system do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { create(:user) }
 
   describe 'アカウント' do
     context 'ログインしているとき', js: true do

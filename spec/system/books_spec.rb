@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Books', type: :system do
-  let(:login_user) { FactoryBot.create(:user) }
-  let(:not_login_user) { FactoryBot.create(:user) }
+  let(:login_user) { create(:user) }
+  let(:not_login_user) { create(:user) }
 
   describe '一覧表示機能' do
-    let!(:book_of_login_user) { FactoryBot.create(:book, title: 'ログインしたユーザーが登録した本', user: login_user) }
-    let!(:book_of_not_login_user) { FactoryBot.create(:book, title: 'ログインしていないユーザーが登録した本', user: not_login_user)}
+    let!(:book_of_login_user) { create(:book, title: 'ログインしたユーザーが登録した本', user: login_user) }
+    let!(:book_of_not_login_user) { create(:book, title: 'ログインしていないユーザーが登録した本', user: not_login_user)}
 
     context 'ユーザーがログインしているとき' do
       it 'ログインしたユーザーが登録した書籍が表示される' do
@@ -57,7 +57,7 @@ RSpec.describe 'Books', type: :system do
   end
 
   describe '編集機能' do
-    let(:login_users_book) { FactoryBot.create(:book, title: '書籍名の変更', user: login_user) }
+    let(:login_users_book) { create(:book, title: '書籍名の変更', user: login_user) }
 
     context 'ログインユーザーが作成したとき' do
       it '編集できる' do
@@ -90,7 +90,7 @@ RSpec.describe 'Books', type: :system do
   end
 
   describe '削除機能' do
-    let(:login_users_book) { FactoryBot.create(:book, title: '最初の書籍', user: login_user) }
+    let(:login_users_book) { create(:book, title: '最初の書籍', user: login_user) }
 
     context '写真が一枚も投稿されていないとき' do
       it '削除できる', js: true do
@@ -106,7 +106,7 @@ RSpec.describe 'Books', type: :system do
     end
 
     context '写真が投稿されているとき' do
-      let!(:photo) { FactoryBot.create(:photo, book: login_users_book) }
+      let!(:photo) { create(:photo, book: login_users_book) }
 
       it '削除できる', js: true do
         sign_in_as login_user
