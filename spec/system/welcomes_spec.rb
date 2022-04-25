@@ -13,7 +13,9 @@ RSpec.describe 'Welcome', type: :system do
 
   it 'ログインしているユーザがログアウトできる' do
     sign_in_as user
+    find('.navbar-link').hover
     click_on 'ログアウト'
+
     expect(page).to have_content 'ログアウトしました'
     expect(page).to have_content '「また後で読み返そう」そう思って忘れてしまっている本はありませんか？'
   end
