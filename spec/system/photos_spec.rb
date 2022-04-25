@@ -40,14 +40,14 @@ RSpec.describe 'Photos', type: :system do
         expect(page).not_to have_selector 'img.new-img'
 
         expect do
-          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          attach_file 'photo[image]', Rails.root.join('spec/factories/files/test_640x320.png')
           expect(page).to have_selector 'img.new-img'
         end.to change(book.photos, :count).by(0)
       end
 
       it '投稿できる' do
         expect do
-          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          attach_file 'photo[image]', Rails.root.join('spec/factories/files/test_640x320.png')
           fill_in 'photo[note]', with: 'これはメモです'
           click_on '投稿する'
         end.to change(book.photos, :count).by(1)
@@ -72,7 +72,7 @@ RSpec.describe 'Photos', type: :system do
     context 'メモを入力したとき' do
       it '投稿できる' do
         expect do
-          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          attach_file 'photo[image]', Rails.root.join('spec/factories/files/test_640x320.png')
           fill_in 'photo[note]', with: 'これはメモです'
           click_on '投稿する'
         end.to change(book.photos, :count).by(1)
@@ -85,7 +85,7 @@ RSpec.describe 'Photos', type: :system do
     context 'メモに140字より多い文字数を入力したとき' do
       it '投稿できない' do
         expect do
-          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          attach_file 'photo[image]', Rails.root.join('spec/factories/files/test_640x320.png')
           fill_in 'photo[note]', with: 'a' * 141
           click_on '投稿する'
         end.to change(book.photos, :count).by(0)
