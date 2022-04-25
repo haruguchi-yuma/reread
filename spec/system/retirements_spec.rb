@@ -13,7 +13,7 @@ RSpec.describe 'Retirements', type: :system do
 
         click_on 'アカウントを削除する'
         expect do
-          expect(page.accept_confirm).to eq '本当に削除しますか？'
+          expect(accept_confirm).to eq '本当に削除しますか？'
           expect(page).to have_content 'アカウントを削除しました'
         end.to change { User.count }.by(-1)
 
