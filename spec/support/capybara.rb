@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require_relative '../sign_in_helper'
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do
