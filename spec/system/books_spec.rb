@@ -54,6 +54,39 @@ RSpec.describe 'Books', type: :system do
     end
   end
 
+  describe '編集機能' do
+    let(:book) { FactoryBot.create(:book, title: '書籍名の変更', user: user_a) }
+
+    context 'ユーザーAが作成したとき' do
+      it '編集できる' do
+        sign_in_as user_a
+        visit edit_book_path(book)
+
+        expect do
+          fill_in 'book[title]', with: '変更した書籍'
+          click_button '更新する'
+        end.to change(user_a.books, :count).by(0)
+
+        expect(page).to have_selector '.notification', text: '「変更した書籍」に変更しました'
+        expect(page).to have_content '変更した書籍'
+      end
+
+      it '書籍名を空文字にして更新するとエラーになる' do
+        sign_in_as user_a
+        visit edit_book_path(book)
+
+        expect do
+          fill_in 'book[title]', with: ''
+          click_button '更新する'
+        end.to change(user_a.books, :count).by(0)
+
+        within '#error_explanation' do
+          expect(page).to have_content '書籍名を入力してください'
+        end
+      end
+    end
+  end
+
   describe '削除機能' do
     let(:book) { FactoryBot.create(:book, title: '最初の書籍', user: user_a) }
 
@@ -84,39 +117,6 @@ RSpec.describe 'Books', type: :system do
           expect(page.accept_confirm).to eq '投稿した写真も削除されます。よろしいですか？'
           expect(page).to have_content '「最初の書籍」を削除しました'
         end.to change(user_a.books, :count).by(-1)
-      end
-    end
-  end
-
-  describe '編集機能' do
-    let(:book) { FactoryBot.create(:book, title: '書籍名の変更', user: user_a) }
-
-    context 'ユーザーAが作成したとき' do
-      it '編集できる' do
-        sign_in_as user_a
-        visit edit_book_path(book)
-
-        expect do
-          fill_in 'book[title]', with: '変更した書籍'
-          click_button '更新する'
-        end.to change(user_a.books, :count).by(0)
-
-        expect(page).to have_selector '.notification', text: '「変更した書籍」に変更しました'
-        expect(page).to have_content '変更した書籍'
-      end
-
-      it '書籍名を空文字にして更新するとエラーになる' do
-        sign_in_as user_a
-        visit edit_book_path(book)
-
-        expect do
-          fill_in 'book[title]', with: ''
-          click_button '更新する'
-        end.to change(user_a.books, :count).by(0)
-
-        within '#error_explanation' do
-          expect(page).to have_content '書籍名を入力してください'
-        end
       end
     end
   end
