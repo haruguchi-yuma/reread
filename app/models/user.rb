@@ -2,6 +2,7 @@
 
 class User < ApplicationRecord
   has_many :books, dependent: :destroy
+  validates :provider, :uid, :image_url, presence: true
 
   def self.find_or_create_from_auth_hash!(auth_hash)
     provider = auth_hash[:provider]

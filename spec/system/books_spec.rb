@@ -8,7 +8,7 @@ RSpec.describe 'Books', type: :system do
 
   describe '一覧表示機能' do
     let!(:book_of_login_user) { create(:book, title: 'ログインしたユーザーが登録した本', user: login_user) }
-    let!(:book_of_not_login_user) { create(:book, title: 'ログインしていないユーザーが登録した本', user: not_login_user)}
+    let!(:book_of_not_login_user) { create(:book, title: 'ログインしていないユーザーが登録した本', user: not_login_user) }
 
     context 'ユーザーがログインしているとき' do
       it 'ログインしたユーザーが登録した書籍が表示される' do
