@@ -1,5 +1,5 @@
-if (document.URL.match(/books\/\d+\/photos\/new/)) {
-  document.addEventListener('turbolinks:load', () => {
+document.addEventListener('turbolinks:load', () => {
+  if (document.getElementById('new-image')) {
     const createImageHTML = (blob) => {
       const imageElement = document.getElementById('new-image')
       const blobImage = document.createElement('img')
@@ -8,14 +8,14 @@ if (document.URL.match(/books\/\d+\/photos\/new/)) {
 
       imageElement.appendChild(blobImage)
     }
+
     document.getElementById('photo_image').addEventListener('change', (e) => {
       const imageContent = document.querySelector('.new-img')
-      console.log(imageContent)
       if (imageContent) imageContent.remove()
 
       const file = e.target.files[0]
       const blob = window.URL.createObjectURL(file)
       createImageHTML(blob)
     })
-  })
-}
+  }
+})
