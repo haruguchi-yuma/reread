@@ -1,7 +1,7 @@
 document.addEventListener('turbolinks:load', () => {
-  if (document.getElementById('new-image')) {
+  if (document.querySelector('#new-image')) {
     const createImageHTML = (blob) => {
-      const imageElement = document.getElementById('new-image')
+      const imageElement = document.querySelector('#new-image')
       const blobImage = document.createElement('img')
       blobImage.setAttribute('class', 'new-img')
       blobImage.setAttribute('src', blob)
@@ -9,7 +9,7 @@ document.addEventListener('turbolinks:load', () => {
       imageElement.appendChild(blobImage)
     }
 
-    document.getElementById('photo_image').addEventListener('change', (e) => {
+    document.querySelector('#photo_image').addEventListener('change', (e) => {
       const imageContent = document.querySelector('.new-img')
       if (imageContent) imageContent.remove()
 
