@@ -7,9 +7,9 @@ import Rails from '@rails/ujs'
 import Turbolinks from 'turbolinks'
 import * as ActiveStorage from '@rails/activestorage'
 
-require('../src/header')
-require('../src/modal')
-require('./preview')
+import('../src/header')
+import('../src/modal')
+import('../preview')
 
 Rails.start()
 Turbolinks.start()

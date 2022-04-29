@@ -1,12 +1,8 @@
 document.addEventListener('turbolinks:load', () => {
-  const $navbarBurgers = Array.prototype.slice.call(
-    document.querySelectorAll('.navbar-burger'),
-    0
-  )
+  const navbarBurgers = document.querySelectorAll('.navbar-burger')
 
-  if ($navbarBurgers.length > 0) {
-    // Add a click event on each of them
-    $navbarBurgers.forEach((el) => {
+  if (navbarBurgers.length > 0) {
+    navbarBurgers.forEach((el) => {
       el.addEventListener('click', () => {
         const target = el.dataset.target
         const $target = document.getElementById(target)
