@@ -8,6 +8,7 @@ RSpec.describe CalendarClient, type: :model do
   let(:client) { CalendarClient.new(user) }
 
   before do
+    WebMock.enable!
     stub_request(:post, 'https://accounts.google.com/o/oauth2/token')
       .with(
         body: { 'client_id' => '145346336594-4r4gj5cbiuol4g80e4npdfev8jg4jsqm.apps.googleusercontent.com',
