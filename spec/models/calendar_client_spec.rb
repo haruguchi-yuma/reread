@@ -10,9 +10,6 @@ RSpec.describe CalendarClient, type: :model do
   before do
     stub_request(:post, 'https://accounts.google.com/o/oauth2/token')
       .with(
-        body: { 'client_id' => '145346336594-4r4gj5cbiuol4g80e4npdfev8jg4jsqm.apps.googleusercontent.com',
-                'client_secret' => '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',
-                'grant_type' => 'refresh_token', 'refresh_token' => '1/zaaHNytlC3SEBX7F2cfrHcqJEa3KoAHYeXES6nmho' },
         headers: {
           'Accept' => '*/*',
           'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
