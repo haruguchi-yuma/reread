@@ -32,7 +32,7 @@ RSpec.describe CalendarClient, type: :model do
 
     stub_request(:post, 'https://www.googleapis.com/calendar/v3/calendars/primary/events')
       .with(
-        body: '{"description":"","end":{"date":"2022-05-05"},"start":{"date":"2022-05-05"},"summary":"本のタイトル"}'
+        body: '{"description":"","end":{"date":"2222-05-05"},"start":{"date":"2222-05-05"},"summary":"本のタイトル"}'
       )
       .to_return(status: 200, body: '{
         "kind": "calendar#event",
@@ -77,7 +77,7 @@ RSpec.describe CalendarClient, type: :model do
     end
 
     it '#create_event' do
-      client.create_event(create(:read_history, read_back_on: Date.parse('2022-05-05')))
+      client.create_event(create(:read_history, read_back_on: Date.parse('2222-05-05')))
       expect(WebMock).to have_requested(:post, 'https://www.googleapis.com/calendar/v3/calendars/primary/events')
     end
 
