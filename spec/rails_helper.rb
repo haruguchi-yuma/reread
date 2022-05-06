@@ -65,4 +65,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
   config.include SignInHelper
+  config.after(:suite) do
+    FileUtils.rm_rf(Dir['public/uploads/test/'])
+  end
 end
