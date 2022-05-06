@@ -13,10 +13,15 @@ if Rails.env.production?
   cache: Shrine::Storage::Cloudinary.new(prefix: "cache"),
   store: Shrine::Storage::Cloudinary.new(prefix: "reread")
 }
+elsif Rails.env.test?
+  Shrine.storages = {
+    cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/test/cache"),
+    store: Shrine::Storage::FileSystem.new("public", prefix: "uploads/test/photos")
+  }
 else
   Shrine.storages = {
     cache: Shrine::Storage::FileSystem.new("public", prefix: "uploads/cache"),
-    store: Shrine::Storage::FileSystem.new("public", prefix: "uploads")
+    store: Shrine::Storage::FileSystem.new("public", prefix: "uploads/photos")
   }
 end
 
