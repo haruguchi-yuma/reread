@@ -3,12 +3,12 @@
 require 'rails_helper'
 
 RSpec.describe 'Photos', type: :system do
-  let(:user_a) { FactoryBot.create(:user) }
-  let(:user_b) { FactoryBot.create(:user) }
-  let(:book) { FactoryBot.create(:book, user: user_a) }
+  let(:user_a) { create(:user) }
+  let(:user_b) { create(:user) }
+  let(:book) { create(:book, user: user_a) }
 
   describe '一覧表示機能' do
-    let!(:photo) { FactoryBot.create(:photo, book: book) }
+    let!(:photo) { create(:photo, book: book) }
 
     context 'ユーザーAがログインしているとき' do
       it '投稿した写真が表示される' do
@@ -40,14 +40,14 @@ RSpec.describe 'Photos', type: :system do
         expect(page).not_to have_selector 'img.new-img'
 
         expect do
-          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          attach_file 'photo[image]', Rails.root.join('spec/factories/files/test_640x320.png')
           expect(page).to have_selector 'img.new-img'
         end.to change(book.photos, :count).by(0)
       end
 
       it '投稿できる' do
         expect do
-          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          attach_file 'photo[image]', Rails.root.join('spec/factories/files/test_640x320.png')
           fill_in 'photo[note]', with: 'これはメモです'
           click_on '投稿する'
         end.to change(book.photos, :count).by(1)
@@ -72,7 +72,7 @@ RSpec.describe 'Photos', type: :system do
     context 'メモを入力したとき' do
       it '投稿できる' do
         expect do
-          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          attach_file 'photo[image]', Rails.root.join('spec/factories/files/test_640x320.png')
           fill_in 'photo[note]', with: 'これはメモです'
           click_on '投稿する'
         end.to change(book.photos, :count).by(1)
@@ -85,7 +85,7 @@ RSpec.describe 'Photos', type: :system do
     context 'メモに140字より多い文字数を入力したとき' do
       it '投稿できない' do
         expect do
-          attach_file 'photo[image]', "#{Rails.root}/spec/factories/test_640x320.png"
+          attach_file 'photo[image]', Rails.root.join('spec/factories/files/test_640x320.png')
           fill_in 'photo[note]', with: 'a' * 141
           click_on '投稿する'
         end.to change(book.photos, :count).by(0)
@@ -98,7 +98,7 @@ RSpec.describe 'Photos', type: :system do
   end
 
   describe '編集機能' do
-    let!(:photo) { FactoryBot.create(:photo, note: 'メモの編集テスト', book: book) }
+    let!(:photo) { create(:photo, note: 'メモの編集テスト', book: book) }
 
     context '自分が投稿した写真のメモ' do
       it '編集できる' do

@@ -3,7 +3,7 @@
 require 'rails_helper'
 
 RSpec.describe 'ReadHistories', type: :system, js: true do
-  let(:book) { FactoryBot.create(:book) }
+  let(:book) { create(:book) }
 
   describe '登録機能' do
     before do

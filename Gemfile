@@ -14,7 +14,7 @@ gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'turbolinks', '~> 5'
+# gem 'turbolinks', '~> 5'
 gem 'webpacker', '~> 5.0'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -57,6 +57,7 @@ group :test do
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'webdrivers'
+  gem 'webmock'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

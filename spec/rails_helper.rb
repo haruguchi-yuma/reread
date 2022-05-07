@@ -7,7 +7,7 @@ require_relative '../config/environment'
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
-require_relative 'sign_in_helper'
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -42,6 +42,7 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
+  config.include FactoryBot::Syntax::Methods
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
