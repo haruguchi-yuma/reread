@@ -19,7 +19,7 @@ class BooksController < ApplicationController
     @books = current_user.books.order(created_at: :desc).page(params[:page])
 
     if @book.save
-      redirect_to books_url, notice: '書籍を登録しました'
+      redirect_to books_url, notice: '読み返したい本を登録しました'
     else
       render :index
     end

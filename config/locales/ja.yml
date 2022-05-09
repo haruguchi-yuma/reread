@@ -1,12 +1,12 @@
 ja:
   activerecord:
     models:
-      book: 書籍
+      book: 読み返したい本
       photo: 写真
       read_history: 読み返しの履歴
     attributes:
       book:
-        title: 書籍名
+        title: タイトル
       photo:
         image: 写真
         note: メモ
