@@ -19,5 +19,5 @@ h1.is-size-3-tablet.is-size-5-mobile
           = f.label :note, class: 'label'
           = f.text_area :note, class: 'textarea', placeholder: '(任意)'
       = f.submit class: 'button is-warning'
-    .has-text-right
-      = link_to '戻る', book_path(@photo.book)
+.has-text-left
+  = link_to '戻る', book_path(@photo.book)
