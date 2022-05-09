@@ -4,14 +4,14 @@
   .columns.is-vcentered.py-4
     h1.title.column.is-3 読み返したい本リスト
     #show-modal.column.has-text-right
-      button.button.is-warning 読み返す本を登録する
+      button.button.is-warning 読み返したい本を登録する
 
   #modal-window.modal
     #modal-background.modal-background
     .modal-card
       .modal-card-head
         p.modal-card-title
-          | 読み返す本を登録する
+          | 読み返したい本を登録する
         button#close-modal.delete aria-label="close"
       = form_with model: @book, remote: true do |f|
         section.modal-card-body
@@ -48,6 +48,6 @@
   - else
     .blank-page.has-text-centered.has-text-grey
         .o-empty-message__text
-          | 書籍はまだありません
+          | 読み返したい本の登録はまだありません
         .is-size-1
           i.far.fa-sad-tear

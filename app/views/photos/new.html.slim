@@ -1,7 +1,7 @@
-- content_for(:html_title) { '写真の投稿' }
+- content_for(:html_title) { '気になりポイントの投稿' }
 
-h1.title.is-3 = "写真の投稿(#{@photo.book.title})"
-
-= render 'form', photo: @photo
-.div.has-text-right
-  = link_to '戻る', book_path(@photo.book)
+.photo-form
+  h1.title.is-3 = "気になりポイントの投稿(#{@photo.book.title})"
+  = render 'form', photo: @photo
+  .div.has-text-right
+    = link_to '戻る', book_path(@photo.book)

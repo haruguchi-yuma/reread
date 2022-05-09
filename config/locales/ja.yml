@@ -1,16 +1,16 @@
 ja:
   activerecord:
     models:
-      book: 書籍
-      photo: 写真
+      book: 読み返したい本
+      photo: 気になりポイント
       read_history: 読み返しの履歴
     attributes:
       book:
-        title: 書籍名
+        title: タイトル
       photo:
         image: 写真
         note: メモ
-        updated_at: 投稿日
+        updated_at: 最終更新日
       read_history:
         summary: サマリー
         read_back_on: 読み返す日

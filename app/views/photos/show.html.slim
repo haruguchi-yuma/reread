@@ -1,9 +1,9 @@
-- content_for(:html_title) { "写真詳細(#{@photo.book.title})" }
+- content_for(:html_title) { "気になりポイント詳細(#{@photo.book.title})" }
 
 h1.is-size-3-tablet.is-size-5-mobile
-  = "写真の詳細画面(#{@photo.book.title})"
+  = "気になりポイントの詳細(#{@photo.book.title})"
 
-.columns
+.columns.mt-5
   .column.is-7
     - if @photo.image
       = image_tag @photo.image[:large].url, class: "image-#{@photo.id}"
@@ -19,5 +19,5 @@ h1.is-size-3-tablet.is-size-5-mobile
           = f.label :note, class: 'label'
           = f.text_area :note, class: 'textarea', placeholder: '(任意)'
       = f.submit class: 'button is-warning'
-    .has-text-right
-      = link_to '戻る', book_path(@photo.book)
+.has-text-left
+  = link_to '戻る', book_path(@photo.book)

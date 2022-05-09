@@ -25,32 +25,32 @@ RSpec.describe 'Books', type: :system do
   end
 
   describe '登録機能' do
-    context '書籍名を入力したとき' do
+    context 'タイトルを入力したとき' do
       it '登録される' do
         sign_in_as login_user
-        click_button '読み返す本を登録する'
+        click_button '読み返したい本を登録する'
         expect do
           fill_in 'book[title]', with: '最初の書籍'
           click_button '登録する'
         end.to change(login_user.books, :count).by(1)
 
-        expect(page).to have_selector '.notification', text: '書籍を登録しました'
+        expect(page).to have_selector '.notification', text: '読み返したい本を登録しました'
         expect(page).to have_content '最初の書籍'
       end
     end
 
-    context '書籍名を入力しなかったとき' do
+    context 'タイトルを入力しなかったとき' do
       it 'エラーになる' do
         sign_in_as login_user
-        click_button '読み返す本を登録する'
+        click_button '読み返したい本を登録する'
         expect do
           fill_in 'book[title]', with: ''
           click_button '登録する'
         end.to change(login_user.books, :count).by(0)
 
-        click_button '読み返す本を登録する'
+        click_button '読み返したい本を登録する'
         within '#error_explanation' do
-          expect(page).to have_content '書籍名を入力してください'
+          expect(page).to have_content 'タイトルを入力してください'
         end
       end
     end
@@ -73,7 +73,7 @@ RSpec.describe 'Books', type: :system do
         expect(page).to have_content '変更した書籍'
       end
 
-      it '書籍名を空文字にして更新するとエラーになる' do
+      it 'タイトルを空文字にして更新するとエラーになる' do
         sign_in_as login_user
         visit edit_book_path(login_users_book)
 
@@ -83,7 +83,7 @@ RSpec.describe 'Books', type: :system do
         end.to change(login_user.books, :count).by(0)
 
         within '#error_explanation' do
-          expect(page).to have_content '書籍名を入力してください'
+          expect(page).to have_content 'タイトルを入力してください'
         end
       end
     end
