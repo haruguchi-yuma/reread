@@ -1,4 +1,4 @@
-- content_for(:html_title) { "投稿した写真(#{@book.title})" }
+- content_for(:html_title) { "気になりポイント(#{@book.title})" }
 
 .book-info.py-3
   .book-info-section.columns.is-align-items-center
@@ -30,14 +30,14 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
   - else
     .blank-page.has-text-centered.has-text-grey
       .o-empty-message__text
-        | 写真の投稿はまだありません
+        | 気になりポイントの投稿はまだありません
       .is-size-1
         i.far.fa-sad-tear
       .div
         = link_to new_book_photo_path(@book), class: 'button is-warning' do
           span.icon.mr-1
             i.fas.fa-camera
-          = '写真投稿'
+          = '気になりポイントを投稿する'
 
 .is-flex.is-justify-content-space-between
   .delete-button
@@ -49,4 +49,4 @@ div class="photo-index is-flex is-flex-wrap-wrap is-align-content-flex-start #{'
   = link_to new_book_photo_path(@book), class: 'button is-warning' do
     span.icon
       i.fa.fa-plus.is-size-3
-    p.ml-1 = '写真を投稿する'
+    p.ml-1 = '気になりポイントを投稿する'

@@ -52,7 +52,7 @@ RSpec.describe 'Photos', type: :system do
           click_on '投稿する'
         end.to change(book.photos, :count).by(1)
 
-        expect(page).to have_selector '.notification', text: '写真を投稿しました'
+        expect(page).to have_selector '.notification', text: '気になりポイントを投稿しました'
       end
     end
 
@@ -77,7 +77,7 @@ RSpec.describe 'Photos', type: :system do
           click_on '投稿する'
         end.to change(book.photos, :count).by(1)
 
-        expect(page).to have_selector '.notification', text: '写真を投稿しました'
+        expect(page).to have_selector '.notification', text: '気になりポイントを投稿しました'
         expect(page).to have_content 'これはメモです'
       end
     end
