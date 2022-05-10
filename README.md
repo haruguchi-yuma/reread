@@ -1,4 +1,5 @@
 # re:Read
+![image](https://user-images.githubusercontent.com/57053236/167611378-13d332a3-49ed-45d2-ac52-a1486c8e33ce.png)
 `re:Read`は技術書を読み返すための読書管理アプリです。
 
 技術書などを何度も読み返したいが管理しきれず1度読んで、次を無ことを忘れてしまうといった問題を解決します。そのため以下のような特徴があります。
@@ -40,9 +41,17 @@ $ bin/lint
 
 ## スクリーンショット
 ### 画面
-![image](https://user-images.githubusercontent.com/57053236/159634918-2b59fac5-da5e-4926-bd70-450cd5c57440.png)
+#### 読み返したい本のリスト
 ![image](https://user-images.githubusercontent.com/57053236/159635051-a7472660-c4f3-41e8-9ba1-46948bf6cb2a.png)
 
-![image](https://user-images.githubusercontent.com/57053236/159635140-3105188a-9847-475c-8c5e-649964bc2cda.png)
+#### 読み返したい本の登録
+![image](https://user-images.githubusercontent.com/57053236/167613240-ba4c990a-ace9-44e7-87e3-87a0cc5a524c.png)
 
-![image](https://user-images.githubusercontent.com/57053236/159635285-396d7767-cf3b-4c12-8c6c-aaf7e161ccd2.png)
+#### 気になりポイントの一覧
+![スクリーンショット 2022-05-10 19 51 56](https://user-images.githubusercontent.com/57053236/167612664-4ca0797e-12be-4f42-8606-6cbcd13e50fd.png)
+
+#### 気になりポイント詳細
+![image](https://user-images.githubusercontent.com/57053236/167613442-9b85c0df-b9e4-42c8-a32d-2b75fb356f6c.png)
+
+#### 読み返す日の設定
+![image](https://user-images.githubusercontent.com/57053236/167612994-d46202f1-3276-43b3-ba4c-fe52fb369f74.png)
