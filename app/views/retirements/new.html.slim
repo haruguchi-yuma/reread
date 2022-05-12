@@ -4,3 +4,5 @@ p.my-4 アカウントを削除した場合、登録した書籍や写真が全�
 
 = link_to 'アカウントを削除する', retirement_path, method: :post,
   class: 'button is-danger is-light', data: { confirm: '本当に削除しますか？' }
+.has-text-left.pt-5
+  = link_to '戻る', books_path
