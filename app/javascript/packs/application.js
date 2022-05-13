@@ -8,8 +8,7 @@ import * as ActiveStorage from '@rails/activestorage'
 
 import '../src/header'
 import '../src/modal'
-import '../preview'
-
+import '../src/preview'
 
 Rails.start()
 ActiveStorage.start()
