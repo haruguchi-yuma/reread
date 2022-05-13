@@ -5,7 +5,7 @@ require 'json'
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  context 'User.find_or_create_from_auth_hash!' do
+  describe '.find_or_create_from_auth_hash!' do
     it '有効な引数が渡されたときuserが見つかること' do
       user = create(:user)
       auth_hash = { provider: user.provider, uid: user.uid, info: { image: user.image_url } }
@@ -19,7 +19,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#store_credentials_in_cache' do
+  describe '#store_credentials_in_cache' do
     before do
       hash = {
         credentials: {
@@ -40,7 +40,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  context '#delete_refresh_token_in_cache' do
+  describe '#delete_refresh_token_in_cache' do
     before do
       @user = create(:user)
       hash = {
