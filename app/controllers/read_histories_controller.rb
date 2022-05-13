@@ -2,11 +2,11 @@
 
 class ReadHistoriesController < ApplicationController
   def new
-    @read_history = Book.find(params[:book_id]).read_histories.new
+    @read_history = current_user.books.find(params[:book_id]).read_histories.new
   end
 
   def create
-    @read_history = Book.find(params[:book_id]).read_histories.new(read_history_params)
+    @read_history = current_user.books.find(params[:book_id]).read_histories.new(read_history_params)
 
     if @read_history.save
       client = CalendarClient.new(current_user)
