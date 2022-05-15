@@ -99,7 +99,7 @@ RSpec.describe 'Books', type: :system do
 
         click_on 'この書籍を削除する'
         expect do
-          expect(page.accept_confirm).to eq '投稿した写真も削除されます。よろしいですか？'
+          expect(accept_confirm).to eq '投稿した写真も削除されます。よろしいですか？'
           expect(page).to have_content '「最初の書籍」を削除しました'
         end.to change(login_user.books, :count).by(-1)
       end
@@ -116,7 +116,7 @@ RSpec.describe 'Books', type: :system do
         click_on 'この書籍を削除する'
 
         expect do
-          expect(page.accept_confirm).to eq '投稿した写真も削除されます。よろしいですか？'
+          expect(accept_confirm).to eq '投稿した写真も削除されます。よろしいですか？'
           expect(page).to have_content '「最初の書籍」を削除しました'
         end.to change(login_user.books, :count).by(-1)
       end

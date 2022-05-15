@@ -6,9 +6,9 @@
 import Rails from '@rails/ujs'
 import * as ActiveStorage from '@rails/activestorage'
 
-import('../src/header')
-import('../src/modal')
-import('../preview')
+import '../src/header'
+import '../src/modal'
+import '../src/preview'
 
 Rails.start()
 ActiveStorage.start()

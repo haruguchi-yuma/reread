@@ -60,7 +60,6 @@ group :test do
   gem 'webmock'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'google-api-client'
 gem 'google-apis-calendar_v3', '~> 0.15.0'
 gem 'html2slim'
