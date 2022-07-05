@@ -13,4 +13,7 @@ Rails.application.routes.draw do
     resources :photos, only: %i(new create show update)
     resources :read_histories, only: %i(new create)
   end
+
+  get '*not_found' => 'application#routing_error'
+  post '*not_found' => 'application#routing_error'
 end
